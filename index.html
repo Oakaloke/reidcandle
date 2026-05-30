@@ -1470,90 +1470,25 @@
   }
 
   /* ═══════════════════════════════════════════════════════════
-     MAGIC STAR — Disney-style flyover on "Brighten Every Heart"
+     MAGIC STAR — JS/Canvas Pixar-quality flyover
      ═══════════════════════════════════════════════════════════ */
   .nav-brand-motto { position: relative; overflow: visible; }
+  .motto-magic     { position: relative; display: inline-block; }
+  .star-canvas     { position: absolute; pointer-events: none; }
 
-  .motto-magic {
-    position: relative;
-    display: inline-block;
-    /* Sweeping shimmer band synced with the star's pass */
-    background: linear-gradient(
-      90deg,
-      var(--accent) 0%,
-      var(--accent) 30%,
-      #ffeea0 44%,
-      #ffffff  50%,
-      #ffeea0 56%,
-      var(--accent) 70%,
-      var(--accent) 100%
-    );
-    background-size: 220% 100%;
-    background-position: -60% center;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: mottoShimmer 8s ease-in-out infinite;
+  /* Letter shimmer states */
+  .ml { display: inline; }
+  .ml-lit {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    text-shadow: 0 0 8px rgba(255,255,255,1), 0 0 20px rgba(255,255,255,0.85), 0 0 36px rgba(210,225,255,0.6);
+    transition: color 0.1s ease, text-shadow 0.1s ease, -webkit-text-fill-color 0.1s ease;
   }
-
-  /* 5-pointed star */
-  .motto-magic::before {
-    content: "";
-    position: absolute;
-    width: 13px;
-    height: 13px;
-    background: radial-gradient(
-      circle at 50% 38%,
-      #ffffff 0%,
-      #fff5b0 35%,
-      #ffd700 65%,
-      transparent 100%
-    );
-    clip-path: polygon(50% 0%,61.8% 35.4%,98.1% 35.4%,69.1% 57.3%,79.4% 90.5%,50% 70%,20.6% 90.5%,30.9% 57.3%,1.9% 35.4%,38.2% 35.4%);
-    filter: drop-shadow(0 0 3px #fff) drop-shadow(0 0 7px #ffd700) drop-shadow(0 0 16px rgba(255,215,0,0.55));
-    animation: starFlyArc 8s ease-in-out infinite;
-    pointer-events: none;
-  }
-
-  /* Comet tail */
-  .motto-magic::after {
-    content: "";
-    position: absolute;
-    width: 32px;
-    height: 3px;
-    background: linear-gradient(90deg, transparent 0%, rgba(255,220,90,0.3) 50%, rgba(255,255,255,0.75) 100%);
-    border-radius: 3px;
-    filter: blur(1.5px);
-    animation: tailFlyArc 8s ease-in-out infinite;
-    pointer-events: none;
-  }
-
-  @keyframes starFlyArc {
-    0%   { left: -14px; top: 75%; opacity: 0;   transform: scale(0.5) rotate(-20deg); }
-    4%   { opacity: 1;             transform: scale(1)   rotate(0deg);   }
-    20%  { top: 40%; }
-    40%  { top: 58%; transform: scale(1.12) rotate(8deg);  }
-    55%  { top: 42%; }
-    58%  { left: calc(100% + 12px); top: 65%; opacity: 1; transform: scale(0.7) rotate(18deg); }
-    60%  { opacity: 0; }
-    100% { left: calc(100% + 12px); top: 65%; opacity: 0; transform: scale(0.5); }
-  }
-
-  @keyframes tailFlyArc {
-    0%   { left: -40px; top: 75%; opacity: 0;   transform: translateY(-50%); }
-    5%   { opacity: 0.85; }
-    20%  { top: 40%; }
-    40%  { top: 58%; }
-    55%  { top: 42%; }
-    57%  { opacity: 0.7; }
-    60%  { left: calc(100% + 12px); top: 65%; opacity: 0; transform: translateY(-50%); }
-    100% { left: calc(100% + 12px); top: 65%; opacity: 0; transform: translateY(-50%); }
-  }
-
-  @keyframes mottoShimmer {
-    0%   { background-position: -60% center; }
-    50%  { background-position: 160% center; }
-    100% { background-position: 160% center; }
+  .ml-fading {
+    color: var(--accent) !important;
+    -webkit-text-fill-color: var(--accent) !important;
+    text-shadow: 0 0 5px rgba(255,255,255,0.2);
+    transition: color 0.65s ease, text-shadow 0.65s ease, -webkit-text-fill-color 0.65s ease;
   }
 
   /* ═══════════════════════════════════════════════════════════
@@ -2481,6 +2416,243 @@ document.addEventListener("DOMContentLoaded", () => {
   initNewsletter();
   document.getElementById("year").textContent = new Date().getFullYear();
 });
+</script>
+
+<!-- ═════ MAGIC STAR ═════ -->
+<script>
+(function () {
+  'use strict';
+
+  /* ── Helpers ──────────────────────────────────────────── */
+  function cubicB(t, p0, p1, p2, p3) {
+    var u = 1 - t;
+    return u*u*u*p0 + 3*u*u*t*p1 + 3*u*t*t*p2 + t*t*t*p3;
+  }
+  function easeIO(t) { return t < 0.5 ? 2*t*t : 1-Math.pow(-2*t+2,2)/2; }
+
+  /* Slows the path in the middle 30% for a "hover" feel */
+  function flightT(t) {
+    if (t < 0.35)  return easeIO(t / 0.35)       * 0.42;
+    if (t < 0.62)  return 0.42 + (t-0.35)/(0.27) * 0.10;
+    return 0.52   + easeIO((t-0.62)/0.38)          * 0.48;
+  }
+
+  /* ── Setup ────────────────────────────────────────────── */
+  var motto = document.querySelector('.motto-magic');
+  if (!motto) return;
+
+  /* Split into letter spans */
+  var raw = motto.textContent.trim();
+  motto.innerHTML = raw.split('').map(function(ch) {
+    return '<span class="ml">' + (ch === ' ' ? '&nbsp;' : ch) + '</span>';
+  }).join('');
+
+  /* Canvas overlaid on the nav-brand-motto container */
+  var canvas = document.createElement('canvas');
+  canvas.className = 'star-canvas';
+  var parent = motto.closest('.nav-brand-motto');
+  parent.appendChild(canvas);
+  var ctx = canvas.getContext('2d');
+
+  var PAD = 70;
+  var mottoL = 0, mottoTop = 0, mottoW = 0, mottoH = 0;
+  var letterCx = [];   /* page-x center of each letter span */
+  var canvasLeft = 0;  /* canvas left in page coords, cached per frame */
+
+  function measure() {
+    var pr = parent.getBoundingClientRect();
+    var mr = motto.getBoundingClientRect();
+    mottoL   = mr.left;
+    mottoTop = mr.top;
+    mottoW   = mr.width;
+    mottoH   = mr.height;
+    canvas.style.left = (mr.left - pr.left - PAD) + 'px';
+    canvas.style.top  = (mr.top  - pr.top  - PAD * 0.6) + 'px';
+    canvas.width  = mottoW + PAD * 2;
+    canvas.height = mottoH + PAD * 1.2;
+    letterCx = Array.from(motto.querySelectorAll('.ml')).map(function(el) {
+      var r = el.getBoundingClientRect();
+      return r.left + r.width / 2;
+    });
+  }
+
+  /* Defer measure one frame so layout is settled */
+  requestAnimationFrame(function() {
+    measure();
+    window.addEventListener('resize', measure);
+    requestAnimationFrame(tick);
+  });
+
+  /* ── Star path position ───────────────────────────────── */
+  function getPos(t) {
+    var ft = flightT(t);
+    var W  = canvas.width, H = canvas.height, mid = H * 0.54;
+    return {
+      x: cubicB(ft, -8, W*0.22, W*0.78, W+8),
+      y: cubicB(ft, mid+6, mid - H*0.30, mid - H*0.22, mid+5)
+    };
+  }
+
+  /* ── Star drawing ─────────────────────────────────────── */
+  function starPath(cx, cy, r) {
+    ctx.beginPath();
+    for (var i = 0; i < 5; i++) {
+      var oa = i * 4*Math.PI/5 - Math.PI/2;
+      var ia = oa + Math.PI/5;
+      var fn = i === 0 ? 'moveTo' : 'lineTo';
+      ctx[fn](cx + Math.cos(oa)*r,     cy + Math.sin(oa)*r);
+      ctx.lineTo(cx + Math.cos(ia)*r*0.38, cy + Math.sin(ia)*r*0.38);
+    }
+    ctx.closePath();
+  }
+
+  function drawStar(x, y, size, alpha) {
+    ctx.save();
+    ctx.globalAlpha = alpha;
+
+    /* Soft radial halo */
+    var halo = ctx.createRadialGradient(x, y, 0, x, y, size*5);
+    halo.addColorStop(0,   'rgba(255,255,255,0.28)');
+    halo.addColorStop(0.5, 'rgba(230,240,255,0.08)');
+    halo.addColorStop(1,   'transparent');
+    ctx.fillStyle = halo;
+    ctx.beginPath();
+    ctx.arc(x, y, size*5, 0, Math.PI*2);
+    ctx.fill();
+
+    /* Glow layers (blurred star shapes, large→small) */
+    var layers = [
+      [size*2.0, 0.12, 32],
+      [size*1.5, 0.22, 20],
+      [size*1.15, 0.45, 10],
+      [size,      1.0,   0]
+    ];
+    for (var li = 0; li < layers.length; li++) {
+      var L = layers[li];
+      ctx.shadowBlur  = L[2];
+      ctx.shadowColor = 'rgba(255,255,255,0.95)';
+      ctx.fillStyle   = 'rgba(255,255,255,' + L[1] + ')';
+      starPath(x, y, L[0]);
+      ctx.fill();
+    }
+
+    /* Cross-light rays */
+    ctx.shadowBlur = 4;
+    ctx.shadowColor = 'rgba(255,255,255,0.9)';
+    var rays = [[1.0, size*3.5], [0.7, size*2.2], [1.0, size*3.5], [0.7, size*2.2]];
+    for (var ri = 0; ri < 4; ri++) {
+      var ang = ri * Math.PI/4;
+      var rlen = rays[ri][1];
+      var grd = ctx.createLinearGradient(
+        x - Math.cos(ang)*2, y - Math.sin(ang)*2,
+        x + Math.cos(ang)*rlen, y + Math.sin(ang)*rlen
+      );
+      grd.addColorStop(0, 'rgba(255,255,255,' + (rays[ri][0]*0.85) + ')');
+      grd.addColorStop(1, 'transparent');
+      ctx.strokeStyle = grd;
+      ctx.lineWidth = 1.2;
+      ctx.beginPath();
+      ctx.moveTo(x - Math.cos(ang)*2, y - Math.sin(ang)*2);
+      ctx.lineTo(x + Math.cos(ang)*rlen, y + Math.sin(ang)*rlen);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(x + Math.cos(ang)*2, y + Math.sin(ang)*2);
+      ctx.lineTo(x - Math.cos(ang)*rlen, y - Math.sin(ang)*rlen);
+      ctx.stroke();
+    }
+    ctx.restore();
+  }
+
+  /* ── Particles ────────────────────────────────────────── */
+  var parts = [];
+  function spawnPart(x, y, isHover) {
+    var speed = isHover ? 0.6 : 1.4;
+    parts.push({
+      x: x, y: y,
+      vx: (Math.random()-0.5) * speed,
+      vy: (Math.random()-0.5) * speed - 0.3,
+      life: 1.0,
+      r: Math.random() * (isHover ? 2 : 2.8) + 1
+    });
+  }
+  function tickParts() {
+    parts = parts.filter(function(p) { return p.life > 0; });
+    parts.forEach(function(p) {
+      p.x += p.vx; p.y += p.vy; p.vy += 0.025; p.life -= 0.032;
+    });
+  }
+  function drawParts() {
+    parts.forEach(function(p) {
+      var a = p.life;
+      ctx.save();
+      ctx.globalAlpha = a * 0.8;
+      ctx.shadowBlur  = 7;
+      ctx.shadowColor = 'rgba(255,255,255,0.9)';
+      ctx.fillStyle   = '#ffffff';
+      var rad = Math.max(0.01, p.r * a);
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, rad, 0, Math.PI*2);
+      ctx.fill();
+      ctx.restore();
+    });
+  }
+
+  /* ── Letter shimmer ───────────────────────────────────── */
+  var spans = Array.from(motto.querySelectorAll('.ml'));
+  function setLetters(starPageX, active) {
+    spans.forEach(function(el, i) {
+      var dist = Math.abs(starPageX - letterCx[i]);
+      if (active && dist < 20) {
+        el.classList.remove('ml-fading');
+        el.classList.add('ml-lit');
+      } else if (el.classList.contains('ml-lit')) {
+        el.classList.remove('ml-lit');
+        el.classList.add('ml-fading');
+        (function(e){ setTimeout(function(){ e.classList.remove('ml-fading'); }, 750); })(el);
+      }
+    });
+  }
+  function clearLetters() {
+    spans.forEach(function(el) {
+      if (el.classList.contains('ml-lit') || el.classList.contains('ml-fading')) {
+        el.classList.remove('ml-lit', 'ml-fading');
+      }
+    });
+  }
+
+  /* ── Main tick ────────────────────────────────────────── */
+  var CYCLE  = 7200;
+  var FLIGHT = 2800;
+  var start  = null;
+
+  function tick(ts) {
+    if (!start) start = ts;
+    var elapsed = (ts - start) % CYCLE;
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    tickParts();
+
+    if (elapsed < FLIGHT) {
+      var t   = elapsed / FLIGHT;
+      var alpha = t < 0.07 ? t/0.07 : t > 0.87 ? (1-t)/0.13 : 1;
+      var pos = getPos(t);
+      var isHover = t > 0.36 && t < 0.63;
+
+      if (Math.random() < (isHover ? 0.35 : 0.82)) spawnPart(pos.x, pos.y, isHover);
+
+      drawParts();
+      drawStar(pos.x, pos.y, 9, alpha);
+
+      var cr = canvas.getBoundingClientRect();
+      setLetters(cr.left + pos.x, true);
+    } else {
+      drawParts();
+      if (elapsed > FLIGHT + 80) clearLetters();
+    }
+
+    requestAnimationFrame(tick);
+  }
+})();
 </script>
 
 </body>
