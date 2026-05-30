@@ -1470,6 +1470,93 @@
   }
 
   /* ═══════════════════════════════════════════════════════════
+     MAGIC STAR — Disney-style flyover on "Brighten Every Heart"
+     ═══════════════════════════════════════════════════════════ */
+  .nav-brand-motto { position: relative; overflow: visible; }
+
+  .motto-magic {
+    position: relative;
+    display: inline-block;
+    /* Sweeping shimmer band synced with the star's pass */
+    background: linear-gradient(
+      90deg,
+      var(--accent) 0%,
+      var(--accent) 30%,
+      #ffeea0 44%,
+      #ffffff  50%,
+      #ffeea0 56%,
+      var(--accent) 70%,
+      var(--accent) 100%
+    );
+    background-size: 220% 100%;
+    background-position: -60% center;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: mottoShimmer 8s ease-in-out infinite;
+  }
+
+  /* 5-pointed star */
+  .motto-magic::before {
+    content: "";
+    position: absolute;
+    width: 13px;
+    height: 13px;
+    background: radial-gradient(
+      circle at 50% 38%,
+      #ffffff 0%,
+      #fff5b0 35%,
+      #ffd700 65%,
+      transparent 100%
+    );
+    clip-path: polygon(50% 0%,61.8% 35.4%,98.1% 35.4%,69.1% 57.3%,79.4% 90.5%,50% 70%,20.6% 90.5%,30.9% 57.3%,1.9% 35.4%,38.2% 35.4%);
+    filter: drop-shadow(0 0 3px #fff) drop-shadow(0 0 7px #ffd700) drop-shadow(0 0 16px rgba(255,215,0,0.55));
+    animation: starFlyArc 8s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  /* Comet tail */
+  .motto-magic::after {
+    content: "";
+    position: absolute;
+    width: 32px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent 0%, rgba(255,220,90,0.3) 50%, rgba(255,255,255,0.75) 100%);
+    border-radius: 3px;
+    filter: blur(1.5px);
+    animation: tailFlyArc 8s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  @keyframes starFlyArc {
+    0%   { left: -14px; top: 75%; opacity: 0;   transform: scale(0.5) rotate(-20deg); }
+    4%   { opacity: 1;             transform: scale(1)   rotate(0deg);   }
+    20%  { top: 40%; }
+    40%  { top: 58%; transform: scale(1.12) rotate(8deg);  }
+    55%  { top: 42%; }
+    58%  { left: calc(100% + 12px); top: 65%; opacity: 1; transform: scale(0.7) rotate(18deg); }
+    60%  { opacity: 0; }
+    100% { left: calc(100% + 12px); top: 65%; opacity: 0; transform: scale(0.5); }
+  }
+
+  @keyframes tailFlyArc {
+    0%   { left: -40px; top: 75%; opacity: 0;   transform: translateY(-50%); }
+    5%   { opacity: 0.85; }
+    20%  { top: 40%; }
+    40%  { top: 58%; }
+    55%  { top: 42%; }
+    57%  { opacity: 0.7; }
+    60%  { left: calc(100% + 12px); top: 65%; opacity: 0; transform: translateY(-50%); }
+    100% { left: calc(100% + 12px); top: 65%; opacity: 0; transform: translateY(-50%); }
+  }
+
+  @keyframes mottoShimmer {
+    0%   { background-position: -60% center; }
+    50%  { background-position: 160% center; }
+    100% { background-position: 160% center; }
+  }
+
+  /* ═══════════════════════════════════════════════════════════
      MOBILE RESPONSIVE FIXES
      All overrides below are mobile-only and do not touch
      any desktop rule defined above.
@@ -1630,7 +1717,7 @@
       <svg class="nav-brand-mark" id="navLogo" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"></svg>
       <div class="nav-brand-stack">
         <span class="nav-brand-name">Reid Candle</span>
-        <span class="nav-brand-motto">Brighten Every Heart</span>
+        <span class="nav-brand-motto"><span class="motto-magic">Brighten Every Heart</span></span>
       </div>
     </a>
     <ul class="nav-links">
