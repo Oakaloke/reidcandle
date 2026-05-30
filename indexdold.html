@@ -1,0 +1,2087 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reid Candle — Brighten Every Heart · Hand-Poured in Green Cove Springs, Florida</title>
+<meta name="description" content="A faith-rooted candle house from a quiet bend of the St. Johns River. Hand-poured by sisters Holly & Hannah Reid in Green Cove Springs, Florida.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Outfit:wght@200;300;400;500;600&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    /* Color-of-the-day (JS overrides these) */
+    --logo-primary: #B22234;
+    --logo-secondary: #f7f1e1;
+    --accent: var(--logo-primary);
+
+    /* Lowcountry-editorial palette — Ford Field meets Magnolia */
+    --ivory:        #faf5e9;   /* page paper */
+    --cream:        #f5ecd6;   /* warm cream */
+    --linen:        #ede2c4;   /* sun-bleached linen */
+    --shell:        #ece4d0;   /* warm shell */
+    --sage-pale:    #f0e8d0;   /* faded sage */
+    --sage:         #b8a0c8;   /* misty sage */
+    --sage-mid:     #3C3B6E;   /* live oak sage */
+    --moss:         #4a6b4e;   /* moss */
+    --heritage:     #2a3a5c;   /* deep patriotic navy */
+    --heritage-deep:#1a2640;   /* deepest navy — text on light backgrounds */
+
+    --magnolia-cream: #fbf4e4;
+    --magnolia-blush: #ead8c6;
+
+    --ink:          #2a2418;
+    --ink-soft:     #5b4a36;
+    --ink-quiet:    #8a7860;
+    --ink-faint:    #b8a989;
+
+    --serif:        "Cormorant Garamond", Georgia, serif;
+    --sans:         "Outfit", -apple-system, BlinkMacSystemFont, sans-serif;
+    --script:       "Caveat", cursive;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--ivory);
+    color: var(--ink);
+    font-family: var(--serif);
+    font-size: 19px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  img, svg { display: block; max-width: 100%; }
+  ::selection { background: rgba(178, 34, 52, 0.35); color: var(--ivory); }
+
+  .container { max-width: 1320px; margin: 0 auto; padding: 0 40px; position: relative; }
+  .container-narrow { max-width: 880px; margin: 0 auto; padding: 0 40px; position: relative; }
+  @media (max-width: 640px) { .container, .container-narrow { padding: 0 24px; } }
+
+  /* ═══════════════════════════════════════════════════════════
+     ANNOUNCEMENT BAR — 4th of July patriotic blue with big stars
+     ═══════════════════════════════════════════════════════════ */
+  .announce {
+    background: #3C3B6E;
+    color: #ffffff;
+    text-align: center;
+    padding: 10px 16px;
+    font-family: var(--sans);
+    font-size: 11.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 400;
+    position: relative;
+    z-index: 60;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  /* red stripe top + bottom */
+  .announce::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: #B22234;
+  }
+  .announce::after {
+    content: "";
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: #B22234;
+  }
+  /* Big Hobby Lobby style stars */
+  .astar-lg {
+    color: #B22234;
+    font-size: 28px;
+    line-height: 1;
+    display: inline-block;
+    filter: drop-shadow(0 0 4px rgba(178,34,52,0.6));
+    animation: starPop 2.5s ease-in-out infinite;
+    flex-shrink: 0;
+  }
+  .astar-sm {
+    color: #ffffff;
+    font-size: 16px;
+    line-height: 1;
+    display: inline-block;
+    opacity: 0.85;
+    flex-shrink: 0;
+  }
+  .announce-text { display: inline-block; padding: 0 4px; }
+  .announce-sub  { opacity: 0.85; }
+  .announce-sep  { color: rgba(255,255,255,0.3); padding: 0 4px; }
+  @keyframes starPop {
+    0%, 100% { transform: scale(1);    color: #B22234; }
+    50%       { transform: scale(1.2); color: #ff4d6d; }
+  }
+  @media (max-width: 640px) {
+    .announce { font-size: 10px; letter-spacing: 0.12em; padding: 8px 12px; }
+    .announce-sub, .announce-sep { display: none; }
+    .astar-lg { font-size: 22px; }
+    .astar-sm { font-size: 13px; }
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     NAV — quiet ivory, heritage accents
+     ═══════════════════════════════════════════════════════════ */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(250, 245, 233, 0.94);
+    backdrop-filter: blur(14px) saturate(1.1);
+    border-bottom: 1px solid rgba(60, 59, 110, 0.18);
+  }
+  .nav-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 40px;
+    max-width: 1320px;
+    margin: 0 auto;
+  }
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none;
+    color: var(--ink);
+  }
+  .nav-brand-mark { width: 46px; height: 46px; flex-shrink: 0; }
+  .nav-brand-stack { display: flex; flex-direction: column; }
+  .nav-brand-name {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 24px;
+    letter-spacing: 0.02em;
+    line-height: 1;
+  }
+  .nav-brand-motto {
+    font-family: var(--script);
+    color: var(--accent);
+    font-size: 17px;
+    line-height: 1;
+    margin-top: 5px;
+    letter-spacing: 0.01em;
+    font-weight: 500;
+  }
+  .nav-links {
+    display: flex;
+    gap: 38px;
+    list-style: none;
+    font-family: var(--sans);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.24em;
+    font-weight: 400;
+  }
+  .nav-links a {
+    color: var(--ink-soft);
+    text-decoration: none;
+    transition: color 0.3s;
+    position: relative;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 0; bottom: -8px;
+    width: 0; height: 1px;
+    background: var(--accent);
+    transition: width 0.4s ease;
+  }
+  .nav-links a:hover::after { width: 100%; }
+  @media (max-width: 880px) { .nav-links { display: none; } }
+
+  /* ═══════════════════════════════════════════════════════════
+     HERO — full center symmetry, logo first
+     ═══════════════════════════════════════════════════════════ */
+  .hero {
+    position: relative;
+    overflow: hidden;
+    padding: 70px 0 90px;
+    background:
+      radial-gradient(ellipse 80% 50% at 50% 0%, rgba(240, 220, 180, 0.3), transparent 70%),
+      radial-gradient(ellipse 60% 50% at 15% 100%, rgba(237, 226, 196, 0.4), transparent 65%),
+      radial-gradient(ellipse 60% 50% at 85% 100%, rgba(237, 226, 196, 0.4), transparent 65%),
+      linear-gradient(180deg, var(--ivory) 0%, var(--cream) 100%);
+    text-align: center;
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 50% 40% at 50% 50%, rgba(178, 34, 52, 0.03), transparent 70%);
+    pointer-events: none;
+  }
+  .hero-centered {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+  }
+  .hero-eyebrow {
+    font-family: var(--sans);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.4em;
+    color: var(--ink-soft);
+    margin-bottom: 44px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    justify-content: center;
+    opacity: 0;
+    animation: rise 1s ease-out 0.1s forwards;
+    font-weight: 400;
+  }
+  .hero-eyebrow::before, .hero-eyebrow::after {
+    content: "";
+    width: 36px;
+    height: 1px;
+    background: var(--accent);
+    opacity: 0.5;
+  }
+  /* Logo stage — large, centered, commanding */
+  .hero-stage {
+    position: relative;
+    width: min(500px, 82vw);
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    animation: rise 1.2s ease-out 0.2s forwards;
+    margin-bottom: 52px;
+  }
+
+  .hero-logo-svg {
+    width: 122%;
+    height: auto;
+    position: relative;
+    z-index: 2;
+    animation: gentleSway 10s ease-in-out infinite;
+    filter: drop-shadow(0 6px 18px rgba(60, 59, 110, 0.12));
+  }
+  .hero-script {
+    font-family: var(--script);
+    color: var(--accent);
+    font-size: clamp(26px, 3.5vw, 38px);
+    line-height: 1;
+    margin-bottom: 16px;
+    transform: rotate(-1.5deg);
+    display: inline-block;
+    opacity: 0;
+    animation: rise 1s ease-out 0.48s forwards;
+  }
+  .hero h1 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(38px, 5.5vw, 72px);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 22px;
+    max-width: 760px;
+    opacity: 0;
+    animation: rise 1.1s ease-out 0.58s forwards;
+  }
+  .hero h1 em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--accent);
+  }
+  .hero-lede {
+    font-family: var(--serif);
+    font-size: 20px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    max-width: 560px;
+    margin-bottom: 44px;
+    font-style: italic;
+    font-weight: 400;
+    opacity: 0;
+    animation: rise 1.1s ease-out 0.7s forwards;
+  }
+  .hero-cta-row {
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+    justify-content: center;
+    opacity: 0;
+    animation: rise 1.1s ease-out 0.82s forwards;
+  }
+  .btn {
+    font-family: var(--sans);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    font-weight: 400;
+    padding: 19px 38px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.35s cubic-bezier(.2,.7,.3,1);
+    border-radius: 1px;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: var(--ivory);
+    box-shadow: 0 8px 24px -10px var(--accent);
+  }
+  .btn-primary:hover {
+    background: var(--heritage-deep);
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px -12px var(--heritage-deep);
+  }
+  .btn-ghost {
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid var(--ink-soft);
+  }
+  .btn-ghost:hover {
+    background: var(--ink);
+    color: var(--ivory);
+    border-color: var(--ink);
+  }
+
+  .hero-stage {
+    position: relative;
+    width: min(500px, 82vw);
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    animation: rise 1.2s ease-out 0.2s forwards;
+    margin-bottom: 52px;
+  }
+
+  .hero-logo-svg {
+    width: 95%;
+    height: auto;
+    position: relative;
+    z-index: 1;
+    animation: gentleSway 10s ease-in-out infinite;
+    filter: drop-shadow(0 8px 24px rgba(60, 59, 110, 0.15));
+  }
+  /* botanical sprigs in corners */
+  .botanical-sprig {
+    position: absolute;
+    width: 38%;
+    z-index: 1;
+    opacity: 0.85;
+  }
+  .sprig-tl { top: 2%; left: -3%; transform: rotate(-25deg); }
+  .sprig-br { bottom: 2%; right: -3%; transform: rotate(155deg); }
+
+  .season-badge {
+    position: absolute;
+    bottom: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--ivory);
+    border: 1px solid rgba(180, 160, 120, 0.25);
+    padding: 10px 22px;
+    font-family: var(--sans);
+    font-size: 10.5px;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    z-index: 4;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 400;
+    box-shadow: 0 8px 20px -10px rgba(60, 59, 110, 0.18);
+  }
+  .season-badge::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 10px var(--accent);
+  }
+
+  @keyframes gentleSway {
+    0%, 100% { transform: rotate(-1.3deg); }
+    50% { transform: rotate(1.3deg); }
+  }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(28px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     SECTION HEADERS — Ford Field editorial style
+     ═══════════════════════════════════════════════════════════ */
+  .section-eyebrow {
+    font-family: var(--sans);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.4em;
+    color: var(--accent);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    justify-content: center;
+    font-weight: 400;
+  }
+  .section-eyebrow::before, .section-eyebrow::after {
+    content: "";
+    width: 40px;
+    height: 1px;
+    background: rgba(178, 34, 52, 0.35);
+    opacity: 0.6;
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(40px, 5.5vw, 68px);
+    line-height: 1.02;
+    text-align: center;
+    margin-bottom: 22px;
+    letter-spacing: -0.022em;
+    color: var(--ink);
+  }
+  .section-title em {
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 300;
+  }
+  .section-sub {
+    text-align: center;
+    font-style: italic;
+    color: var(--ink-soft);
+    font-size: 21px;
+    max-width: 680px;
+    margin: 0 auto 80px;
+    line-height: 1.5;
+    font-weight: 400;
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     MOTTO BANNER — soft sage gradient (NO BLACK)
+     ═══════════════════════════════════════════════════════════ */
+  .motto-banner {
+    background:
+      radial-gradient(ellipse 70% 50% at 30% 30%, rgba(180, 160, 120, 0.3), transparent 70%),
+      radial-gradient(ellipse 60% 60% at 80% 70%, rgba(240, 220, 180, 0.4), transparent 70%),
+      radial-gradient(ellipse 50% 50% at 50% 100%, rgba(237, 226, 196, 0.7), transparent 60%),
+      linear-gradient(160deg, #f5eedc 0%, #f0e8d0 50%, #e8d8bc 100%);
+    padding: 130px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  /* floating botanical motif */
+  .motto-banner::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(ellipse 200px 60px at 12% 25%, rgba(255, 252, 240, 0.4), transparent 70%),
+      radial-gradient(ellipse 280px 80px at 88% 65%, rgba(255, 252, 240, 0.35), transparent 70%),
+      radial-gradient(ellipse 180px 50px at 50% 90%, rgba(255, 252, 240, 0.4), transparent 70%);
+    pointer-events: none;
+  }
+  .motto-banner-deco {
+    position: absolute;
+    width: 200px;
+    opacity: 0.25;
+    z-index: 1;
+  }
+  .motto-banner-deco.left { top: 50%; left: -40px; transform: translateY(-50%) rotate(-20deg); }
+  .motto-banner-deco.right { top: 50%; right: -40px; transform: translateY(-50%) rotate(200deg); }
+  @media (max-width: 760px) { .motto-banner-deco { display: none; } }
+
+  /* Country/American scattered stars — bold patriotic red, white & blue */
+  .motto-stars {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+  }
+  .mstar {
+    position: absolute;
+    font-style: normal;
+    line-height: 1;
+    animation: starTwinkle 3.5s ease-in-out infinite;
+    filter: drop-shadow(0 0 4px currentColor);
+  }
+  /* Patriotic color assignments */
+  .mstar.red   { color: #B22234; }
+  .mstar.blue  { color: #3C3B6E; }
+  .mstar.white { color: rgba(255,255,255,0.85); }
+
+  /* Position + size each star */
+  .mstar.s1  { font-size: 32px; top:  10%; left:  5%; animation-delay: 0.0s; opacity: 0.7; }
+  .mstar.s2  { font-size: 16px; top:  18%; left: 14%; animation-delay: 0.6s; opacity: 0.55; }
+  .mstar.s3  { font-size: 26px; top:   7%; left: 88%; animation-delay: 1.1s; opacity: 0.65; }
+  .mstar.s4  { font-size: 14px; top:  25%; left: 94%; animation-delay: 0.3s; opacity: 0.5; }
+  .mstar.s5  { font-size: 22px; top:  72%; left:  4%; animation-delay: 1.7s; opacity: 0.65; }
+  .mstar.s6  { font-size: 12px; top:  80%; left: 16%; animation-delay: 0.8s; opacity: 0.5; }
+  .mstar.s7  { font-size: 28px; top:  68%; left: 90%; animation-delay: 2.0s; opacity: 0.7; }
+  .mstar.s8  { font-size: 13px; top:  82%; left: 76%; animation-delay: 1.3s; opacity: 0.5; }
+  .mstar.s9  { font-size: 18px; top:  42%; left:  2%; animation-delay: 2.4s; opacity: 0.55; }
+  .mstar.s10 { font-size: 18px; top:  40%; left: 96%; animation-delay: 0.5s; opacity: 0.55; }
+  .mstar.s11 { font-size: 11px; top:  55%; left: 55%; animation-delay: 3.1s; opacity: 0.35; }
+  .mstar.s12 { font-size: 11px; top:  30%; left: 62%; animation-delay: 2.7s; opacity: 0.3; }
+
+  @keyframes starTwinkle {
+    0%, 100% { opacity: var(--op, 0.6); transform: scale(1) rotate(0deg); }
+    40%       { opacity: 1;              transform: scale(1.25) rotate(15deg); }
+    70%       { opacity: var(--op, 0.6); transform: scale(0.9) rotate(-5deg); }
+  }
+
+  /* Top + bottom star-row borders on the banner */
+  .motto-banner::after {
+    content: "★  ★  ★  ★  ★  ★  ★  ★  ★  ★  ★  ★  ★  ★  ★  ★  ★  ★  ★  ★";
+    position: absolute;
+    bottom: 12px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: rgba(178, 34, 52, 0.45);
+    pointer-events: none;
+    z-index: 3;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .motto-inner {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 0 40px;
+    position: relative;
+    z-index: 2;
+  }
+  .motto-eyebrow {
+    font-family: var(--sans);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.4em;
+    color: var(--heritage-deep);
+    margin-bottom: 28px;
+    font-weight: 500;
+    opacity: 0.8;
+  }
+  .motto-text {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-style: italic;
+    font-size: clamp(48px, 8.5vw, 112px);
+    line-height: 0.98;
+    letter-spacing: -0.025em;
+    color: var(--heritage-deep);
+    text-shadow: 0 1px 0 rgba(255, 252, 240, 0.5);
+  }
+  .motto-text .word-every {
+    color: var(--accent);
+    font-style: italic;
+    font-weight: 400;
+  }
+  .motto-sub {
+    font-family: var(--serif);
+    font-style: italic;
+    color: rgba(60, 59, 110, 0.7);
+    margin-top: 32px;
+    font-size: 20px;
+    letter-spacing: 0.02em;
+    line-height: 1.5;
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     COLLECTION — airy candle grid with ceramic jar illustrations
+     ═══════════════════════════════════════════════════════════ */
+  .collection {
+    padding: 160px 0;
+    position: relative;
+    background: var(--ivory);
+  }
+  @media (max-width: 900px) { .collection { padding: 100px 0; } }
+
+  .candle-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 36px;
+  }
+  @media (max-width: 1100px) { .candle-grid { grid-template-columns: repeat(2, 1fr); gap: 40px; } }
+  @media (max-width: 580px)  { .candle-grid { grid-template-columns: 1fr; gap: 36px; } }
+
+  .candle-card {
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    transition: transform 0.5s cubic-bezier(.2,.7,.3,1);
+  }
+  .candle-card:hover { transform: translateY(-8px); }
+
+  .candle-photo {
+    aspect-ratio: 4/5;
+    background:
+      radial-gradient(ellipse 60% 40% at 50% 65%, rgba(155, 176, 151, 0.12), transparent 70%),
+      linear-gradient(170deg, var(--cream) 0%, var(--linen) 100%);
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 16% 18% 12%;
+    overflow: hidden;
+    margin-bottom: 24px;
+    border-radius: 2px;
+  }
+  /* soft window light */
+  .candle-photo::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 50% at 50% 15%, rgba(255, 250, 220, 0.6), transparent 70%);
+  }
+  .candle-jar {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 20px 22px rgba(45, 74, 53, 0.28));
+    transition: transform 0.5s ease;
+  }
+  .candle-card:hover .candle-jar { transform: translateY(-6px) scale(1.04); }
+
+  .candle-number {
+    font-family: var(--sans);
+    font-size: 10.5px;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    color: var(--ink-quiet);
+    margin-bottom: 12px;
+    font-weight: 400;
+  }
+  .candle-name {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 1;
+    letter-spacing: -0.018em;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+  .candle-name em {
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 300;
+  }
+  .candle-notes {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--ink-soft);
+    margin-bottom: 16px;
+    font-size: 15.5px;
+    line-height: 1.5;
+  }
+  .candle-verse {
+    border-top: 1px solid rgba(180, 160, 120, 0.35);
+    padding-top: 16px;
+    margin-bottom: 22px;
+  }
+  .candle-verse-text {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 15px;
+    line-height: 1.45;
+    color: var(--ink);
+    margin-bottom: 6px;
+    font-weight: 400;
+  }
+  .candle-verse-ref {
+    font-family: var(--sans);
+    font-size: 9.5px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+  }
+  .candle-foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .candle-price {
+    font-family: var(--serif);
+    font-size: 22px;
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .candle-love {
+    font-family: var(--sans);
+    font-size: 10px;
+    background: none;
+    border: 1px solid var(--ink-quiet);
+    padding: 9px 14px;
+    cursor: pointer;
+    color: var(--ink);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-weight: 400;
+    border-radius: 1px;
+  }
+  .candle-love:hover, .candle-love.loved {
+    background: var(--accent);
+    color: var(--ivory);
+    border-color: var(--accent);
+  }
+  .heart-icon { width: 11px; height: 11px; fill: currentColor; }
+
+  /* ═══════════════════════════════════════════════════════════
+     STORY — two-col with magnolia branch
+     ═══════════════════════════════════════════════════════════ */
+  .story {
+    padding: 160px 0;
+    position: relative;
+    background:
+      radial-gradient(ellipse 60% 40% at 90% 10%, rgba(180, 160, 120, 0.15), transparent 70%),
+      radial-gradient(ellipse 50% 40% at 5% 95%, rgba(237, 226, 196, 0.6), transparent 70%),
+      var(--cream);
+  }
+  @media (max-width: 900px) { .story { padding: 100px 0; } }
+  .story-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.15fr;
+    gap: 90px;
+    align-items: center;
+  }
+  @media (max-width: 900px) { .story-grid { grid-template-columns: 1fr; gap: 60px; } }
+
+  .story-portrait {
+    position: relative;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow:
+      0 30px 70px -30px rgba(60, 59, 110, 0.3),
+      0 0 0 6px var(--ivory),
+      0 0 0 7px rgba(180, 160, 120, 0.3);
+  }
+  .story-portrait img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .portrait-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0; right: 0;
+    text-align: center;
+    font-family: var(--script);
+    color: var(--ivory);
+    font-size: 28px;
+    line-height: 1;
+    z-index: 3;
+    padding: 40px 16px 18px;
+    background: linear-gradient(transparent, rgba(0,0,0,0.45));
+    text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+  }
+  .portrait-sprig {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 110px;
+    transform: rotate(28deg);
+    z-index: 4;
+    filter: drop-shadow(0 4px 8px rgba(60, 59, 110, 0.2));
+  }
+
+  .story-content { position: relative; }
+  .story-eyebrow {
+    font-family: var(--sans);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.4em;
+    color: var(--accent);
+    margin-bottom: 26px;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .story-eyebrow::before {
+    content: "";
+    width: 40px;
+    height: 1px;
+    background: rgba(178, 34, 52, 0.35);
+    opacity: 0.7;
+  }
+  .story-title {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(40px, 5.5vw, 64px);
+    line-height: 1.02;
+    margin-bottom: 32px;
+    letter-spacing: -0.022em;
+  }
+  .story-title em { font-style: italic; color: var(--accent); font-weight: 300; }
+  .story-body p {
+    font-family: var(--serif);
+    font-size: 19.5px;
+    line-height: 1.75;
+    color: var(--ink-soft);
+    margin-bottom: 24px;
+  }
+  .story-body p:first-child::first-letter {
+    font-family: var(--serif);
+    font-size: 76px;
+    float: left;
+    line-height: 0.82;
+    padding: 10px 16px 0 0;
+    color: var(--accent);
+    font-weight: 400;
+    font-style: italic;
+  }
+  .story-signature {
+    margin-top: 36px;
+    font-family: var(--script);
+    font-size: 38px;
+    color: var(--accent);
+    line-height: 1;
+    font-weight: 600;
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     PROMISE — 4 columns, lowcountry style
+     ═══════════════════════════════════════════════════════════ */
+  .promise {
+    padding: 140px 0 160px;
+    background: var(--ivory);
+    position: relative;
+  }
+  @media (max-width: 900px) { .promise { padding: 90px 0 100px; } }
+
+  /* Small framed landscape — country glimpse, postcard-style */
+  .promise-header-wrap {
+    position: relative;
+    margin-bottom: 30px;
+  }
+  .promise-landscape {
+    position: absolute;
+    top: -20px;
+    right: 30px;
+    width: 200px;
+    aspect-ratio: 600 / 414;
+    transform: rotate(3deg);
+    padding: 8px 8px 32px;
+    background: #fffbf0;
+    box-shadow:
+      0 14px 36px -16px rgba(60, 59, 110, 0.3),
+      0 4px 12px -6px rgba(60, 59, 110, 0.18);
+    z-index: 3;
+    transition: transform 0.5s ease;
+  }
+  .promise-landscape:hover {
+    transform: rotate(1deg) translateY(-4px);
+  }
+  .promise-landscape img {
+    width: 100%;
+    height: calc(100% - 24px);
+    object-fit: cover;
+    display: block;
+  }
+  .promise-landscape::after {
+    content: "Green Cove Springs";
+    position: absolute;
+    bottom: 8px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-family: var(--script);
+    color: var(--ink-soft);
+    font-size: 14px;
+    line-height: 1;
+  }
+  /* little "tape" at the top */
+  .promise-landscape::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    width: 50px;
+    height: 18px;
+    transform: translateX(-50%) rotate(-2deg);
+    background: rgba(180, 160, 120, 0.3);
+    border-left: 1px dashed rgba(180, 160, 120, 0.3);
+    border-right: 1px dashed rgba(180, 160, 120, 0.3);
+  }
+  @media (max-width: 900px) {
+    .promise-landscape {
+      position: relative;
+      top: auto;
+      right: auto;
+      margin: 0 auto 40px;
+      display: block;
+      transform: rotate(-2deg);
+      width: 220px;
+    }
+  }
+
+  .promise-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 48px;
+    margin-top: 30px;
+  }
+  @media (max-width: 900px) { .promise-grid { grid-template-columns: repeat(2, 1fr); gap: 50px; } }
+  @media (max-width: 540px) { .promise-grid { grid-template-columns: 1fr; gap: 40px; } }
+  .promise-item { text-align: center; }
+  .promise-icon-wrap {
+    width: 88px;
+    height: 88px;
+    margin: 0 auto 24px;
+    border-radius: 50%;
+    background:
+      radial-gradient(circle at 30% 30%, rgba(255, 250, 230, 0.7), transparent 60%),
+      linear-gradient(165deg, var(--cream), var(--linen));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow:
+      inset 0 -3px 8px rgba(180, 160, 120, 0.18),
+      0 12px 28px -12px rgba(60, 59, 110, 0.18);
+    border: 1px solid rgba(60, 59, 110, 0.18);
+  }
+  .promise-icon { width: 38px; height: 38px; color: var(--accent); }
+  .promise-title {
+    font-family: var(--serif);
+    font-size: 22px;
+    margin-bottom: 10px;
+    font-weight: 500;
+    letter-spacing: -0.005em;
+  }
+  .promise-desc {
+    color: var(--ink-soft);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     REVIEWS — quiet cards on cream
+     ═══════════════════════════════════════════════════════════ */
+  .reviews {
+    padding: 160px 0;
+    background: var(--cream);
+    position: relative;
+  }
+  @media (max-width: 900px) { .reviews { padding: 100px 0; } }
+
+  .stars {
+    color: var(--accent);
+    font-size: 20px;
+    letter-spacing: 5px;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  .review-count {
+    text-align: center;
+    font-family: var(--sans);
+    color: var(--ink-quiet);
+    font-size: 11px;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    margin-bottom: 72px;
+  }
+  .review-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+  @media (max-width: 900px) { .review-grid { grid-template-columns: 1fr; gap: 26px; } }
+
+  .review-card {
+    background: var(--ivory);
+    padding: 40px 36px 32px;
+    border: 1px solid rgba(180, 160, 120, 0.3);
+    border-radius: 2px;
+    position: relative;
+    box-shadow: 0 8px 28px -18px rgba(60, 59, 110, 0.22);
+  }
+  .review-card:nth-child(2) { transform: translateY(-16px); }
+  @media (max-width: 900px) {
+    .review-card:nth-child(2) { transform: none; }
+  }
+  .review-card::before {
+    content: "“";
+    position: absolute;
+    top: 6px;
+    left: 24px;
+    font-family: var(--serif);
+    font-size: 86px;
+    color: var(--accent);
+    line-height: 1;
+    opacity: 0.35;
+    font-style: italic;
+  }
+  .review-stars {
+    color: var(--accent);
+    margin-bottom: 16px;
+    letter-spacing: 3px;
+    font-size: 14px;
+    position: relative;
+    z-index: 1;
+  }
+  .review-text {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--ink);
+    margin-bottom: 22px;
+    position: relative;
+    z-index: 1;
+  }
+  .review-author {
+    font-family: var(--sans);
+    font-size: 11.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.24em;
+    color: var(--ink-soft);
+    font-weight: 500;
+  }
+  .review-author-loc {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--ink-quiet);
+    font-size: 14px;
+    margin-top: 4px;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     NEWSLETTER — sage gradient (NO BLACK)
+     ═══════════════════════════════════════════════════════════ */
+  .newsletter {
+    padding: 140px 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 30%, rgba(180, 160, 120, 0.25), transparent 70%),
+      radial-gradient(ellipse 70% 50% at 20% 85%, rgba(237, 226, 196, 0.7), transparent 70%),
+      radial-gradient(ellipse 60% 50% at 85% 75%, rgba(240, 220, 180, 0.35), transparent 70%),
+      linear-gradient(165deg, var(--cream) 0%, var(--sage-pale) 100%);
+    color: var(--heritage-deep);
+    position: relative;
+    overflow: hidden;
+  }
+  .newsletter-inner {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 40px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
+  .newsletter-script {
+    font-family: var(--script);
+    color: var(--accent);
+    font-size: 38px;
+    line-height: 1;
+    margin-bottom: 18px;
+    transform: rotate(-2deg);
+    display: inline-block;
+  }
+  .newsletter h2 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-style: italic;
+    font-size: clamp(40px, 6vw, 64px);
+    color: var(--heritage-deep);
+    line-height: 1.02;
+    margin-bottom: 22px;
+    letter-spacing: -0.022em;
+  }
+  .newsletter p {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 19px;
+    color: rgba(60, 59, 110, 0.7);
+    margin-bottom: 38px;
+    line-height: 1.55;
+  }
+  .newsletter-form {
+    display: flex;
+    gap: 14px;
+    max-width: 520px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+  }
+  .newsletter-form input {
+    flex: 1;
+    min-width: 220px;
+    padding: 18px 24px;
+    border: 1px solid rgba(60, 59, 110, 0.25);
+    background: rgba(250, 245, 233, 0.7);
+    color: var(--heritage-deep);
+    font-family: var(--serif);
+    font-size: 17px;
+    border-radius: 1px;
+    outline: none;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .newsletter-form input::placeholder {
+    color: rgba(31, 53, 39, 0.45);
+    font-style: italic;
+  }
+  .newsletter-form input:focus {
+    border-color: var(--accent);
+    background: var(--ivory);
+  }
+  .newsletter-form button {
+    padding: 18px 32px;
+    background: var(--accent);
+    color: var(--ivory);
+    border: none;
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 400;
+    cursor: pointer;
+    border-radius: 1px;
+    transition: all 0.35s;
+  }
+  .newsletter-form button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px -10px var(--accent);
+    background: var(--heritage-deep);
+  }
+  .newsletter-success {
+    margin-top: 22px;
+    font-family: var(--script);
+    color: var(--accent);
+    font-size: 26px;
+    opacity: 0;
+    transition: opacity 0.5s;
+  }
+  .newsletter-success.show { opacity: 1; }
+
+  /* ═══════════════════════════════════════════════════════════
+     FOOTER — IVORY, NOT BLACK
+     ═══════════════════════════════════════════════════════════ */
+  footer {
+    background: var(--ivory);
+    color: var(--ink);
+    padding: 110px 0 40px;
+    position: relative;
+    border-top: 1px solid rgba(60, 59, 110, 0.18);
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 56px;
+    margin-bottom: 70px;
+  }
+  @media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; } }
+  @media (max-width: 540px) { .footer-grid { grid-template-columns: 1fr; gap: 36px; } }
+  .footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 22px;
+  }
+  .footer-brand-stack { display: flex; flex-direction: column; }
+  .footer-brand-name {
+    font-family: var(--serif);
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 1;
+  }
+  .footer-brand-motto {
+    font-family: var(--script);
+    color: var(--accent);
+    font-size: 19px;
+    margin-top: 7px;
+    line-height: 1;
+  }
+  .footer-tag {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--ink-soft);
+    font-size: 17px;
+    max-width: 360px;
+    line-height: 1.55;
+    margin-bottom: 24px;
+  }
+  .footer-social { display: flex; gap: 12px; }
+  .footer-social a {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid rgba(180, 160, 120, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ink-soft);
+    transition: all 0.3s;
+  }
+  .footer-social a:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--ivory);
+    transform: translateY(-2px);
+  }
+  .footer-social svg { width: 16px; height: 16px; }
+  .footer-col h4 {
+    font-family: var(--sans);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--accent);
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+  .footer-col ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .footer-col a {
+    color: var(--ink-soft);
+    text-decoration: none;
+    font-size: 17px;
+    transition: color 0.3s;
+    font-family: var(--serif);
+  }
+  .footer-col a:hover { color: var(--accent); }
+  .footer-bottom {
+    border-top: 1px solid rgba(60, 59, 110, 0.18);
+    padding-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 18px;
+    font-family: var(--sans);
+    font-size: 11px;
+    color: var(--ink-quiet);
+    letter-spacing: 0.1em;
+  }
+  .footer-bottom em {
+    font-family: var(--script);
+    font-style: normal;
+    color: var(--accent);
+    font-size: 17px;
+    letter-spacing: 0.02em;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(36px);
+    transition: opacity 1s ease, transform 1s ease;
+  }
+  .reveal.in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<!-- ═════ ANNOUNCEMENT ═════ -->
+<div class="announce">
+  <span class="astar-lg">★</span>
+  <span class="astar-sm">★</span>
+  <span class="announce-text">Coming Soon · Launching Summer 2026</span>
+  <span class="astar-sm">★</span>
+  <span class="astar-lg">★</span>
+  <span class="announce-sep">|</span>
+  <span class="astar-sm">★</span>
+  <span class="announce-text announce-sub">Hand-Poured in Green Cove Springs, Florida</span>
+  <span class="astar-sm">★</span>
+</div>
+
+<!-- ═════ NAV ═════ -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-brand">
+      <svg class="nav-brand-mark" id="navLogo" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"></svg>
+      <div class="nav-brand-stack">
+        <span class="nav-brand-name">Reid Candle</span>
+        <span class="nav-brand-motto">Brighten Every Heart</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#candles">The Collection</a></li>
+      <li><a href="#story">Our Story</a></li>
+      <li><a href="#promise">The Difference</a></li>
+      <li><a href="#reviews">Kind Words</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ═════ HERO ═════ -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-centered">
+
+      <div class="hero-eyebrow">Green Cove Springs · Clay County · Florida</div>
+
+      <div class="hero-stage">
+        <svg class="hero-logo-svg" id="heroLogo" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"></svg>
+      </div>
+
+      <span class="hero-script">Slow, sweet, faithful...</span>
+      <h1>Come home to <em>a quieter</em> kind of light.</h1>
+      <p class="hero-lede">
+        A faith-rooted candle house born on a quiet bend of the St. Johns River — where the magnolias bloom slow, the air smells of honeysuckle, and Sunday mornings still mean something.
+      </p>
+      <div class="hero-cta-row">
+        <a href="#candles" class="btn btn-primary">See the Collection →</a>
+        <a href="#story" class="btn btn-ghost">Meet the Sisters</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═════ MOTTO BANNER — sage gradient, NO BLACK ═════ -->
+<section class="motto-banner">
+  <!-- decorative botanical sprigs floating on the sides -->
+  <svg class="motto-banner-deco left" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="leafG3" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#b8a0c8"/>
+        <stop offset="100%" stop-color="#2d4a35"/>
+      </linearGradient>
+    </defs>
+    <path d="M 40 180 Q 80 130, 120 80 T 175 25" stroke="#4a6b4e" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <ellipse cx="60" cy="160" rx="24" ry="10" fill="url(#leafG3)" transform="rotate(-30 60 160)"/>
+    <ellipse cx="92" cy="125" rx="28" ry="11" fill="url(#leafG3)" transform="rotate(-25 92 125)"/>
+    <ellipse cx="125" cy="88" rx="25" ry="10" fill="url(#leafG3)" transform="rotate(-20 125 88)"/>
+    <ellipse cx="152" cy="52" rx="20" ry="9" fill="url(#leafG3)" transform="rotate(-15 152 52)"/>
+  </svg>
+  <svg class="motto-banner-deco right" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="leafG4" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#b8a0c8"/>
+        <stop offset="100%" stop-color="#2d4a35"/>
+      </linearGradient>
+    </defs>
+    <path d="M 40 180 Q 80 130, 120 80 T 175 25" stroke="#4a6b4e" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <ellipse cx="60" cy="160" rx="24" ry="10" fill="url(#leafG4)" transform="rotate(-30 60 160)"/>
+    <ellipse cx="92" cy="125" rx="28" ry="11" fill="url(#leafG4)" transform="rotate(-25 92 125)"/>
+    <ellipse cx="125" cy="88" rx="25" ry="10" fill="url(#leafG4)" transform="rotate(-20 125 88)"/>
+    <ellipse cx="152" cy="52" rx="20" ry="9" fill="url(#leafG4)" transform="rotate(-15 152 52)"/>
+  </svg>
+
+  <div class="motto-inner">
+    <p class="motto-eyebrow">— Our Promise to You —</p>
+    <!-- Scattered patriotic stars — red, white & blue -->
+    <div class="motto-stars" aria-hidden="true">
+      <span class="mstar red   s1">★</span>
+      <span class="mstar white s2">✦</span>
+      <span class="mstar blue  s3">★</span>
+      <span class="mstar red   s4">✦</span>
+      <span class="mstar white s5">★</span>
+      <span class="mstar blue  s6">✦</span>
+      <span class="mstar red   s7">★</span>
+      <span class="mstar white s8">✦</span>
+      <span class="mstar blue  s9">★</span>
+      <span class="mstar red  s10">★</span>
+      <span class="mstar white s11">✦</span>
+      <span class="mstar blue  s12">★</span>
+    </div>
+    <p class="motto-text">Brighten <span class="word-every">Every</span> Heart</p>
+    <p class="motto-sub">One wick. One verse. One warm little light at a time.</p>
+  </div>
+</section>
+
+<!-- ═════ COLLECTION ═════ -->
+<section class="collection" id="candles">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-eyebrow">The Collection</p>
+      <h2 class="section-title">Four <em>little lights</em>, scripture-wrapped.</h2>
+      <p class="section-sub">Hand-poured in small batches. Each jar carries a verse picked to match its scent — and a little piece of home.</p>
+    </div>
+
+    <div class="candle-grid">
+
+      <!-- ============ CANDLE 1 — SMALL TOWN ============ -->
+      <article class="candle-card reveal">
+        <div class="candle-photo">
+          <svg class="candle-jar" viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="jar1Body" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="#e0d6c0"/>
+                <stop offset="35%" stop-color="#f7f1e1"/>
+                <stop offset="65%" stop-color="#f7f1e1"/>
+                <stop offset="100%" stop-color="#c9bda0"/>
+              </linearGradient>
+              <radialGradient id="jar1Top" cx="50%" cy="30%">
+                <stop offset="0%" stop-color="#fdf8ec"/>
+                <stop offset="100%" stop-color="#c9bda0"/>
+              </radialGradient>
+              <linearGradient id="jar1Wax" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#f4ecd9"/>
+                <stop offset="100%" stop-color="#d4c399"/>
+              </linearGradient>
+            </defs>
+            <path d="M 30 85 Q 30 75, 40 75 L 160 75 Q 170 75, 170 85 L 168 215 Q 168 225, 158 225 L 42 225 Q 32 225, 32 215 Z"
+                  fill="url(#jar1Body)" stroke="#9c8d6f" stroke-width="0.6"/>
+            <ellipse cx="100" cy="80" rx="65" ry="6" fill="url(#jar1Top)" opacity="0.7"/>
+            <ellipse cx="100" cy="83" rx="62" ry="5" fill="url(#jar1Wax)"/>
+            <line x1="100" y1="78" x2="100" y2="65" stroke="#3d2f22" stroke-width="1.5" stroke-linecap="round"/>
+            <ellipse cx="55" cy="150" rx="8" ry="60" fill="rgba(155,176,151,0.18)"/>
+            <ellipse cx="145" cy="150" rx="8" ry="60" fill="rgba(155,176,151,0.18)"/>
+            <rect x="48" y="100" width="3" height="100" fill="rgba(255,253,245,0.7)" rx="1.5"/>
+            <rect x="55" y="115" width="90" height="85" fill="#fbf4e4" stroke="#c4a981" stroke-width="0.5" rx="1"/>
+            <line x1="65" y1="125" x2="135" y2="125" stroke="#a89376" stroke-width="0.4"/>
+            <line x1="65" y1="190" x2="135" y2="190" stroke="#a89376" stroke-width="0.4"/>
+            <text x="100" y="145" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="13" font-weight="500" fill="#2a2418">SMALL</text>
+            <text x="100" y="162" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="14" font-style="italic" font-weight="400" fill="var(--accent)">Town</text>
+            <text x="100" y="180" text-anchor="middle" font-family="Outfit, sans-serif" font-size="5" letter-spacing="2" fill="#5b4a36">NO. 01</text>
+            <ellipse cx="100" cy="226" rx="60" ry="3" fill="rgba(45,74,53,0.15)"/>
+          </svg>
+        </div>
+        <div class="candle-number">No. 01 · 8 oz Soy</div>
+        <h3 class="candle-name">Small <em>Town</em></h3>
+        <p class="candle-notes">Honeysuckle · Front-porch oak · Sweet tea</p>
+        <div class="candle-verse">
+          <p class="candle-verse-text">“There is no place like home.”</p>
+          <p class="candle-verse-ref">Proverbs 24:3-4</p>
+        </div>
+        <div class="candle-foot">
+          <div class="candle-price">$24</div>
+          <button class="candle-love" data-id="small-town">
+            <svg class="heart-icon" viewBox="0 0 24 24"><path d="M12 21s-7-4.5-7-10a4 4 0 017-2.6A4 4 0 0119 11c0 5.5-7 10-7 10z"/></svg>
+            <span class="love-text">Love</span> <span class="love-count">0</span>
+          </button>
+        </div>
+      </article>
+
+      <!-- ============ CANDLE 2 — LINEN & VANILLA ============ -->
+      <article class="candle-card reveal">
+        <div class="candle-photo">
+          <svg class="candle-jar" viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="jar2Body" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="#e0d6c0"/>
+                <stop offset="35%" stop-color="#f7f1e1"/>
+                <stop offset="65%" stop-color="#f7f1e1"/>
+                <stop offset="100%" stop-color="#c9bda0"/>
+              </linearGradient>
+              <radialGradient id="jar2Top" cx="50%" cy="30%">
+                <stop offset="0%" stop-color="#fdf8ec"/>
+                <stop offset="100%" stop-color="#c9bda0"/>
+              </radialGradient>
+              <linearGradient id="jar2Wax" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#fffaef"/>
+                <stop offset="100%" stop-color="#ece2c6"/>
+              </linearGradient>
+            </defs>
+            <path d="M 30 85 Q 30 75, 40 75 L 160 75 Q 170 75, 170 85 L 168 215 Q 168 225, 158 225 L 42 225 Q 32 225, 32 215 Z"
+                  fill="url(#jar2Body)" stroke="#9c8d6f" stroke-width="0.6"/>
+            <ellipse cx="100" cy="80" rx="65" ry="6" fill="url(#jar2Top)" opacity="0.7"/>
+            <ellipse cx="100" cy="83" rx="62" ry="5" fill="url(#jar2Wax)"/>
+            <line x1="100" y1="78" x2="100" y2="65" stroke="#3d2f22" stroke-width="1.5" stroke-linecap="round"/>
+            <ellipse cx="55" cy="150" rx="8" ry="60" fill="rgba(155,176,151,0.18)"/>
+            <ellipse cx="145" cy="150" rx="8" ry="60" fill="rgba(155,176,151,0.18)"/>
+            <rect x="48" y="100" width="3" height="100" fill="rgba(255,253,245,0.7)" rx="1.5"/>
+            <rect x="55" y="115" width="90" height="85" fill="#fbf4e4" stroke="#c4a981" stroke-width="0.5" rx="1"/>
+            <line x1="65" y1="125" x2="135" y2="125" stroke="#a89376" stroke-width="0.4"/>
+            <line x1="65" y1="190" x2="135" y2="190" stroke="#a89376" stroke-width="0.4"/>
+            <text x="100" y="145" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="11" font-weight="500" fill="#2a2418">LINEN &amp;</text>
+            <text x="100" y="162" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="14" font-style="italic" font-weight="400" fill="var(--accent)">Vanilla</text>
+            <text x="100" y="180" text-anchor="middle" font-family="Outfit, sans-serif" font-size="5" letter-spacing="2" fill="#5b4a36">NO. 02</text>
+            <ellipse cx="100" cy="226" rx="60" ry="3" fill="rgba(45,74,53,0.15)"/>
+          </svg>
+        </div>
+        <div class="candle-number">No. 02 · 8 oz Soy</div>
+        <h3 class="candle-name">Linen &amp; <em>Vanilla</em></h3>
+        <p class="candle-notes">Cotton sheets · Madagascar vanilla · A whisper of musk</p>
+        <div class="candle-verse">
+          <p class="candle-verse-text">“He gives His beloved sleep.”</p>
+          <p class="candle-verse-ref">Psalm 127:2</p>
+        </div>
+        <div class="candle-foot">
+          <div class="candle-price">$24</div>
+          <button class="candle-love" data-id="linen-vanilla">
+            <svg class="heart-icon" viewBox="0 0 24 24"><path d="M12 21s-7-4.5-7-10a4 4 0 017-2.6A4 4 0 0119 11c0 5.5-7 10-7 10z"/></svg>
+            <span class="love-text">Love</span> <span class="love-count">0</span>
+          </button>
+        </div>
+      </article>
+
+      <!-- ============ CANDLE 3 — RIVER BREEZE ============ -->
+      <article class="candle-card reveal">
+        <div class="candle-photo">
+          <svg class="candle-jar" viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="jar3Body" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="#e0d6c0"/>
+                <stop offset="35%" stop-color="#f7f1e1"/>
+                <stop offset="65%" stop-color="#f7f1e1"/>
+                <stop offset="100%" stop-color="#c9bda0"/>
+              </linearGradient>
+              <radialGradient id="jar3Top" cx="50%" cy="30%">
+                <stop offset="0%" stop-color="#fdf8ec"/>
+                <stop offset="100%" stop-color="#c9bda0"/>
+              </radialGradient>
+              <linearGradient id="jar3Wax" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#e8f0f8"/>
+                <stop offset="100%" stop-color="#b8d0e8"/>
+              </linearGradient>
+            </defs>
+            <path d="M 30 85 Q 30 75, 40 75 L 160 75 Q 170 75, 170 85 L 168 215 Q 168 225, 158 225 L 42 225 Q 32 225, 32 215 Z"
+                  fill="url(#jar3Body)" stroke="#9c8d6f" stroke-width="0.6"/>
+            <ellipse cx="100" cy="80" rx="65" ry="6" fill="url(#jar3Top)" opacity="0.7"/>
+            <ellipse cx="100" cy="83" rx="62" ry="5" fill="url(#jar3Wax)"/>
+            <line x1="100" y1="78" x2="100" y2="65" stroke="#3d2f22" stroke-width="1.5" stroke-linecap="round"/>
+            <ellipse cx="55" cy="150" rx="8" ry="60" fill="rgba(155,176,151,0.18)"/>
+            <ellipse cx="145" cy="150" rx="8" ry="60" fill="rgba(155,176,151,0.18)"/>
+            <rect x="48" y="100" width="3" height="100" fill="rgba(255,253,245,0.7)" rx="1.5"/>
+            <rect x="55" y="115" width="90" height="85" fill="#fbf4e4" stroke="#c4a981" stroke-width="0.5" rx="1"/>
+            <line x1="65" y1="125" x2="135" y2="125" stroke="#a89376" stroke-width="0.4"/>
+            <line x1="65" y1="190" x2="135" y2="190" stroke="#a89376" stroke-width="0.4"/>
+            <text x="100" y="145" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="13" font-weight="500" fill="#2a2418">RIVER</text>
+            <text x="100" y="162" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="14" font-style="italic" font-weight="400" fill="var(--accent)">Breeze</text>
+            <text x="100" y="180" text-anchor="middle" font-family="Outfit, sans-serif" font-size="5" letter-spacing="2" fill="#5b4a36">NO. 03</text>
+            <ellipse cx="100" cy="226" rx="60" ry="3" fill="rgba(45,74,53,0.15)"/>
+          </svg>
+        </div>
+        <div class="candle-number">No. 03 · 8 oz Soy</div>
+        <h3 class="candle-name">River <em>Breeze</em></h3>
+        <p class="candle-notes">Cypress · Cool water · Wild jasmine</p>
+        <div class="candle-verse">
+          <p class="candle-verse-text">“He leads me beside still waters; He restores my soul.”</p>
+          <p class="candle-verse-ref">Psalm 23:2-3</p>
+        </div>
+        <div class="candle-foot">
+          <div class="candle-price">$24</div>
+          <button class="candle-love" data-id="river-breeze">
+            <svg class="heart-icon" viewBox="0 0 24 24"><path d="M12 21s-7-4.5-7-10a4 4 0 017-2.6A4 4 0 0119 11c0 5.5-7 10-7 10z"/></svg>
+            <span class="love-text">Love</span> <span class="love-count">0</span>
+          </button>
+        </div>
+      </article>
+
+      <!-- ============ CANDLE 4 — BEACH SAND ============ -->
+      <article class="candle-card reveal">
+        <div class="candle-photo">
+          <svg class="candle-jar" viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="jar4Body" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="#e0d6c0"/>
+                <stop offset="35%" stop-color="#f7f1e1"/>
+                <stop offset="65%" stop-color="#f7f1e1"/>
+                <stop offset="100%" stop-color="#c9bda0"/>
+              </linearGradient>
+              <radialGradient id="jar4Top" cx="50%" cy="30%">
+                <stop offset="0%" stop-color="#fdf8ec"/>
+                <stop offset="100%" stop-color="#c9bda0"/>
+              </radialGradient>
+              <linearGradient id="jar4Wax" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#fbf4e4"/>
+                <stop offset="100%" stop-color="#e8d4b3"/>
+              </linearGradient>
+            </defs>
+            <path d="M 30 85 Q 30 75, 40 75 L 160 75 Q 170 75, 170 85 L 168 215 Q 168 225, 158 225 L 42 225 Q 32 225, 32 215 Z"
+                  fill="url(#jar4Body)" stroke="#9c8d6f" stroke-width="0.6"/>
+            <ellipse cx="100" cy="80" rx="65" ry="6" fill="url(#jar4Top)" opacity="0.7"/>
+            <ellipse cx="100" cy="83" rx="62" ry="5" fill="url(#jar4Wax)"/>
+            <line x1="100" y1="78" x2="100" y2="65" stroke="#3d2f22" stroke-width="1.5" stroke-linecap="round"/>
+            <ellipse cx="55" cy="150" rx="8" ry="60" fill="rgba(155,176,151,0.18)"/>
+            <ellipse cx="145" cy="150" rx="8" ry="60" fill="rgba(155,176,151,0.18)"/>
+            <rect x="48" y="100" width="3" height="100" fill="rgba(255,253,245,0.7)" rx="1.5"/>
+            <rect x="55" y="115" width="90" height="85" fill="#fbf4e4" stroke="#c4a981" stroke-width="0.5" rx="1"/>
+            <line x1="65" y1="125" x2="135" y2="125" stroke="#a89376" stroke-width="0.4"/>
+            <line x1="65" y1="190" x2="135" y2="190" stroke="#a89376" stroke-width="0.4"/>
+            <text x="100" y="145" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="13" font-weight="500" fill="#2a2418">BEACH</text>
+            <text x="100" y="162" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="14" font-style="italic" font-weight="400" fill="var(--accent)">Sand</text>
+            <text x="100" y="180" text-anchor="middle" font-family="Outfit, sans-serif" font-size="5" letter-spacing="2" fill="#5b4a36">NO. 04</text>
+            <ellipse cx="100" cy="226" rx="60" ry="3" fill="rgba(45,74,53,0.15)"/>
+          </svg>
+        </div>
+        <div class="candle-number">No. 04 · 8 oz Soy</div>
+        <h3 class="candle-name">Beach <em>Sand</em></h3>
+        <p class="candle-notes">Warm sand · Coconut husk · Salt-tinged air</p>
+        <div class="candle-verse">
+          <p class="candle-verse-text">“He has made everything beautiful in its time.”</p>
+          <p class="candle-verse-ref">Ecclesiastes 3:11</p>
+        </div>
+        <div class="candle-foot">
+          <div class="candle-price">$24</div>
+          <button class="candle-love" data-id="beach-sand">
+            <svg class="heart-icon" viewBox="0 0 24 24"><path d="M12 21s-7-4.5-7-10a4 4 0 017-2.6A4 4 0 0119 11c0 5.5-7 10-7 10z"/></svg>
+            <span class="love-text">Love</span> <span class="love-count">0</span>
+          </button>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═════ STORY ═════ -->
+<section class="story" id="story">
+  <div class="container">
+    <div class="story-grid">
+
+      <div class="story-portrait reveal">
+        <img src="sisters.jpg" alt="Holly and Hannah Reid — the sisters behind Reid Candle" loading="lazy">
+        <p class="portrait-caption">Holly &amp; Hannah ♡</p>
+
+        <svg class="portrait-sprig" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="leafSprig" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#b8a0c8"/>
+              <stop offset="100%" stop-color="#2d4a35"/>
+            </linearGradient>
+            <radialGradient id="petalSprig" cx="40%" cy="40%">
+              <stop offset="0%" stop-color="#fff8e8"/>
+              <stop offset="100%" stop-color="#ead8c6"/>
+            </radialGradient>
+          </defs>
+          <path d="M 20 100 Q 50 70, 80 40 T 110 15" stroke="#3d2f22" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+          <ellipse cx="40" cy="90" rx="16" ry="7" fill="url(#leafSprig)" transform="rotate(-30 40 90)"/>
+          <ellipse cx="65" cy="65" rx="18" ry="8" fill="url(#leafSprig)" transform="rotate(-25 65 65)"/>
+          <ellipse cx="85" cy="40" rx="14" ry="6" fill="url(#leafSprig)" transform="rotate(-20 85 40)"/>
+          <g transform="translate(50 45)">
+            <ellipse cx="-8" cy="-2" rx="12" ry="6" fill="url(#petalSprig)" transform="rotate(-35)"/>
+            <ellipse cx="8" cy="-6" rx="12" ry="6" fill="url(#petalSprig)" transform="rotate(20)"/>
+            <ellipse cx="0" cy="8" rx="11" ry="5.5" fill="url(#petalSprig)" transform="rotate(70)"/>
+            <ellipse cx="-2" cy="-10" rx="10" ry="5" fill="url(#petalSprig)"/>
+            <circle cx="0" cy="0" r="3" fill="#c89a6f"/>
+          </g>
+        </svg>
+      </div>
+
+      <div class="story-content reveal">
+        <p class="story-eyebrow">Our Story</p>
+        <h2 class="story-title">Two sisters. <em>One little kitchen.</em></h2>
+        <div class="story-body">
+          <p>We grew up in Green Cove Springs — a slow, sweet town in Clay County, Florida, the kind of place where everybody waves from their porch and the church bells still call folks to Sunday service. Our family is small but our roots run deep: faith, tradition, and the quiet kind of joy you find in handing somebody a jar candle and watching them smile.</p>
+          <p>Reid Candle started the way most good things do — at mama's kitchen table. Wax warming on the stove and us two girls deciding what each candle ought to smell like. Holly's the dreamer with the big ideas (she picks the scripture for every label). Hannah's still learning her letters, but she's already got the best nose in the family.</p>
+          <p>Every candle we pour carries a little piece of home. And every label carries a verse — because we believe a candle ought to do more than smell pretty. It ought to brighten every heart it lights.</p>
+        </div>
+        <p class="story-signature">— Holly &amp; Hannah</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═════ PROMISE ═════ -->
+<section class="promise" id="promise">
+  <div class="container">
+    <div class="promise-header-wrap">
+      <div class="promise-landscape reveal">
+        <img src="landscape.jpg" alt="Rolling hills near Green Cove Springs, Florida" loading="lazy">
+      </div>
+      <div class="reveal">
+        <p class="section-eyebrow">The Reid Candle Difference</p>
+        <h2 class="section-title">Made the way <em>mama taught us.</em></h2>
+      </div>
+    </div>
+
+    <div class="promise-grid">
+      <div class="promise-item reveal">
+        <div class="promise-icon-wrap">
+          <svg class="promise-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2C9 6 7 9 7 13a5 5 0 0010 0c0-4-2-7-5-11z"/>
+            <path d="M12 18v3M9 21h6"/>
+          </svg>
+        </div>
+        <h3 class="promise-title">Hand-Poured</h3>
+        <p class="promise-desc">In small batches at our kitchen table — never mass-produced.</p>
+      </div>
+      <div class="promise-item reveal">
+        <div class="promise-icon-wrap">
+          <svg class="promise-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 19V5a1 1 0 011-1h11l4 4v11a1 1 0 01-1 1H5a1 1 0 01-1-1z"/>
+            <path d="M8 9h6M8 13h8M8 17h5"/>
+          </svg>
+        </div>
+        <h3 class="promise-title">Scripture on Every Label</h3>
+        <p class="promise-desc">A verse hand-picked to match the heart of each scent.</p>
+      </div>
+      <div class="promise-item reveal">
+        <div class="promise-icon-wrap">
+          <svg class="promise-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M12 7v10M7 12h10"/>
+          </svg>
+        </div>
+        <h3 class="promise-title">Clean &amp; Honest</h3>
+        <p class="promise-desc">100% soy wax. Cotton wicks. Clean fragrance. Nothing nasty.</p>
+      </div>
+      <div class="promise-item reveal">
+        <div class="promise-icon-wrap">
+          <svg class="promise-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 21l9-18 9 18z"/>
+            <path d="M8 17h8"/>
+          </svg>
+        </div>
+        <h3 class="promise-title">Poured in Florida</h3>
+        <p class="promise-desc">Made and shipped from Green Cove Springs with love.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════ REVIEWS ═════ -->
+<section class="reviews" id="reviews">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-eyebrow">Kind Words</p>
+      <h2 class="section-title">Loved by folks <em>just like you.</em></h2>
+      <div class="stars">★ ★ ★ ★ ★</div>
+      <p class="review-count">4.9 out of 5 · From real customers</p>
+    </div>
+
+    <div class="review-grid">
+      <div class="review-card reveal">
+        <div class="review-stars">★ ★ ★ ★ ★</div>
+        <p class="review-text">Lit my Small Town candle on Sunday morning while making breakfast and the whole house just felt like home. The verse on the label made me tear up. These are special.</p>
+        <p class="review-author">Sarah M.<br><span class="review-author-loc">Jacksonville, FL</span></p>
+      </div>
+      <div class="review-card reveal">
+        <div class="review-stars">★ ★ ★ ★ ★</div>
+        <p class="review-text">River Breeze is exactly what it claims — fresh, clean, and just a little wild. I bought one for myself and three for the neighbors. Will absolutely be back.</p>
+        <p class="review-author">Linda K.<br><span class="review-author-loc">Orange Park, FL</span></p>
+      </div>
+      <div class="review-card reveal">
+        <div class="review-stars">★ ★ ★ ★ ★</div>
+        <p class="review-text">You can tell these are made with love. Beautiful jar, gorgeous scent throw, and the scripture is such a sweet touch. Gave one to my mama and she cried happy tears.</p>
+        <p class="review-author">Rebecca T.<br><span class="review-author-loc">St. Augustine, FL</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════ NEWSLETTER ═════ -->
+<section class="newsletter">
+  <div class="newsletter-inner">
+    <span class="newsletter-script">Pull up a rocking chair...</span>
+    <h2>Join our front porch.</h2>
+    <p>New scents, scripture devotions, and the occasional pull-up-a-chair note from the sisters. We promise we won't be a bother.</p>
+    <form class="newsletter-form" id="newsletterForm">
+      <input type="email" placeholder="your email address" required>
+      <button type="submit">Sign Me Up →</button>
+    </form>
+    <p class="newsletter-success" id="newsletterSuccess">Thank you, friend! ♡</p>
+  </div>
+</section>
+
+<!-- ═════ FOOTER — IVORY ═════ -->
+<footer id="contact">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">
+          <svg class="nav-brand-mark" id="footerLogo" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" style="width:58px;height:58px;"></svg>
+          <div class="footer-brand-stack">
+            <span class="footer-brand-name">Reid Candle</span>
+            <span class="footer-brand-motto">Brighten Every Heart</span>
+          </div>
+        </div>
+        <p class="footer-tag">A faith-rooted candle house from Green Cove Springs, Florida. Hand-poured by Holly &amp; Hannah Reid with prayer, patience, and a whole lot of love.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor"/></svg>
+          </a>
+          <a href="#" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 22v-9h3l1-4h-4V6.5c0-1.2.4-2 2-2h2V1.1c-.3 0-1.5-.1-2.8-.1C11.4 1 9 2.8 9 6v3H6v4h3v9h4z"/></svg>
+          </a>
+          <a href="mailto:hello@reidcandle.com" aria-label="Email">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="#candles">Small Town</a></li>
+          <li><a href="#candles">Linen &amp; Vanilla</a></li>
+          <li><a href="#candles">River Breeze</a></li>
+          <li><a href="#candles">Beach Sand</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>About</h4>
+        <ul>
+          <li><a href="#story">Our Story</a></li>
+          <li><a href="#promise">The Difference</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#">Wholesale</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Help</h4>
+        <ul>
+          <li><a href="mailto:hello@reidcandle.com">Contact Us</a></li>
+          <li><a href="#">Shipping</a></li>
+          <li><a href="#">Returns</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© <span id="year"></span> Reid Candle · Green Cove Springs, FL · <em>Brighten Every Heart</em></div>
+      <div>“Let your light so shine.” — Matthew 5:16</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ═══════════════════════════════════════════════════════════════
+//  REID CANDLE — color-of-the-day logo + interactions
+// ═══════════════════════════════════════════════════════════════
+
+const LOGO_INNER = `
+<path class="logo-primary" d="M493.434 148.972C693.823 138.607 864.692 292.613 875.129 492.998C885.567 693.384 731.623 864.309 531.242 874.819C330.757 885.335 159.725 731.295 149.282 530.806C138.839 330.318 292.941 159.342 493.434 148.972ZM525.239 859.408C717.108 852.207 866.835 690.871 859.716 498.998C852.596 307.126 691.324 157.33 499.449 164.368C307.458 171.409 157.551 332.8 164.675 524.789C171.799 716.777 333.254 866.615 525.239 859.408Z"/><path class="logo-primary" d="M749.139 516.957C758.5 521.819 759.242 519.829 768.349 515.367C761.863 529.135 752.336 543.139 744.928 556.61C726 591.032 705.735 624.773 685.436 658.402C682.355 663.506 675.375 674.791 678.602 680.589C687.81 688.066 708.383 659.41 713.318 652.428C716.545 647.813 718.934 642.306 722.406 637.885C733.182 624.161 749.051 611.841 765.391 605.88C772.921 603.133 785.329 599.394 790.035 607.285C802.031 627.404 762.987 638.25 750.071 643.705C746.272 645.467 738.505 647.122 735.5 650.015C726.449 658.727 719.376 680.635 738.987 681.17C752.347 681.534 762.581 672.589 771.877 664.276C776.051 660.37 789.639 643.995 792.759 643.2L792.918 643.973C790.908 649.497 786.964 653.703 782.658 658.528C768.604 674.277 742.479 695.585 721.705 677.879C716.286 673.26 714.661 664.765 714.543 657.655C711.509 661.561 707.895 665.298 704.661 669.1C698.51 676.331 689.609 686.322 678.965 683.97C665.453 680.985 669.628 663.674 671.978 654.109C662.426 663.504 650.603 686.079 635.248 684.36C622.751 682.962 623.119 668.057 624.46 658.479C617.378 666.979 605.397 683.196 593.812 684.502C577.699 686.318 572.116 664.76 574.57 652.099C570.128 658.077 565.651 664.043 560.66 669.58C554.426 676.497 547.823 684.068 537.767 684.375C533.798 684.496 529.872 683.383 527.02 680.513C524.219 677.694 522.718 673.586 522.243 669.705C519.225 645.055 555.486 625.735 554.86 610.324C554.805 608.97 554.191 607.791 553.137 606.945C551.453 605.594 548.882 604.9 546.752 605.247C530.448 607.906 494.463 668.817 484.436 683.274C476.063 681.923 472.068 681.613 463.805 683.269C466.5 677.728 471.819 669.962 475.285 664.558L496.143 632.24C499.402 627.172 505.105 619.354 506.808 613.775C510.226 602.58 500.371 604.9 495.22 611.077C476.917 633.025 462.351 658.283 441.636 678.169C437.992 681.667 432.172 684.442 427.061 683.904C423.55 683.534 420.347 681.735 418.203 678.93C413.683 672.954 414.968 664.7 415.789 657.847C408.072 666.163 399.101 681.855 387.727 683.859C361.851 688.419 361.605 652.341 371.592 637.863C377.127 629.839 386.844 622.435 394.406 616.724C403.145 610.125 413.517 604.18 424.342 602.414C434.493 601.011 439.194 603.906 440.325 613.85L445.824 603.798C455.513 607.927 454.625 605.485 463.287 604.963C465.824 608.405 422.156 667.738 424.039 676.765C427.043 691.162 444.462 670.68 447.435 667.377C464.489 648.424 477.445 626.015 494.947 607.617C497.575 604.855 500.473 603.77 504.027 602.849L504.708 603.022C519.351 606.864 516.239 619.905 513.248 630.909C513.642 630.879 514.663 630.739 514.998 630.572C517.994 629.077 524.451 619.383 527.038 616.428C529.814 613.257 532.774 610.139 536.012 607.434C539.773 604.293 544.231 601.719 549.313 602.33C553.146 602.791 556.762 604.954 559.04 608.058C561.747 611.746 562.2 615.976 562.072 620.402C561.351 645.326 530.488 669.336 530.526 677.508C530.53 678.297 530.75 679.074 531.298 679.643C532.916 681.325 535.687 681.437 537.875 681.299C540.665 681.123 543.271 680.473 545.692 679.05C559.56 670.903 573.278 646.502 583.973 634.006C594.797 621.359 607.788 611.588 623.258 605.441C627.268 603.847 631.05 602.275 635.425 602.029C639.395 601.807 643.404 602.578 646.36 605.407C648.778 607.722 648.705 609.905 648.821 613.033C663.598 591.235 675.088 566.514 688.972 544.059C693.684 536.437 698.619 524.979 704.135 518.386C706.234 519.563 708.552 520.432 710.786 521.351C715.705 520.258 717.848 519.544 722.495 517.641C720.044 523.591 711.124 538.244 707.593 544.356C698.987 559.474 690.295 574.542 681.516 589.56C670.998 607.337 660.17 624.899 650.026 642.9C645.55 650.843 640.167 658.378 636.082 666.528C634.578 669.528 632.885 673.272 632.835 676.656C632.812 678.176 633.268 679.898 634.487 680.901C635.734 681.927 637.457 681.991 638.967 681.682C649.499 679.526 676.196 643.082 682.444 633.442C687.777 625.215 692.492 616.45 697.378 607.946L733.81 543.658C738.839 534.877 743.775 525.481 749.139 516.957ZM385.98 681.899C404.487 674.135 425.266 638.053 434.555 620.039C438.099 613.165 437.779 605.876 428.366 605.088C410.488 610.334 393.663 635.376 384.384 651.272C380.202 658.436 369.604 682.208 385.98 681.899ZM593.222 682.309C609.674 679.698 638.307 632.823 643.982 616.975C646.292 610.525 646.783 605.274 638.164 605.483C621.53 612.183 595.242 644.154 588.21 660.9C586.38 665.259 583.82 672.953 585.776 677.494C586.564 679.361 588.06 680.839 589.937 681.604C590.905 681.99 592.183 682.164 593.222 682.309ZM746.656 641.131C755.291 637.231 788.164 621.597 783.155 606.342C782.697 604.945 777.892 605.415 776.592 605.55C764.428 609.838 753.776 623.853 746.224 633.898C743.061 638.106 736.412 645.516 746.656 641.131Z"/><path class="logo-secondary" d="M511.023 637.157C510.891 637.158 510.759 637.159 510.627 637.16C510.343 636.455 512.359 631.525 513.248 630.909C513.753 631.166 514.324 631.327 514.811 631.612C514.767 632.056 511.533 636.438 511.023 637.157Z"/><path class="logo-primary" d="M467.967 298.267C473.667 294.795 496.141 284.334 502.276 287.33L502.719 288.38C502.047 289.778 501.464 290.058 499.797 290.445C488.764 293.005 480.918 294.627 471.113 300.543C504.001 321.935 498.058 362.843 458.725 370.501C453.643 371.49 448.458 371.957 443.3 372.398C442.867 372.42 442.103 372.324 441.849 372.771C442.04 373.151 443.51 374.058 443.926 374.363C459.826 384.803 461.719 402.823 456.59 419.659C453.471 429.853 447.526 439.027 444.65 449.296C443.853 452.144 442.548 458.333 446.201 459.771C448.429 460.648 452.455 460.529 454.695 459.469C465.317 454.445 472.337 443.755 478.855 434.415C479.992 432.763 482.442 423.991 483.66 421.554C491.898 405.075 510.667 390.541 527.447 383.794C533.793 381.243 544.774 377.325 551.032 380.513C555.145 382.609 556.312 385.752 557.614 389.704C557.129 392.531 556.674 395.142 555.236 397.68C545.109 415.548 505.632 418.748 498.138 429.06C494.666 433.839 491.115 443.212 492.187 449.116C492.672 451.792 493.995 454.69 496.391 456.148C500.688 458.764 508.191 458.02 512.83 456.769C528.004 452.677 547.256 433.034 555.969 420.092C558.936 415.685 561.3 410.717 563.885 406.076C568.771 397.304 573.725 388.57 578.745 379.874C587.179 384.246 589.761 382.96 598.639 380.253C597.145 383.617 591.854 391.974 589.794 395.399C583.148 406.528 576.354 417.569 569.414 428.517C565.193 435.312 560.439 442.693 557.968 450.273C557.055 453.074 557.809 459.986 561.423 458.748C575.243 454.013 589.641 432.284 598.516 421.408C614.291 402.078 632.86 383.045 658.226 378.728C666.74 377.385 671.697 380.301 672.31 388.931L702.705 336.321C708.584 325.911 716.671 310.69 723.189 301.177L729.285 303.865C733.32 303.402 737.045 302.421 740.984 301.476C739.737 304.041 738.017 306.803 736.544 309.281C719.798 337.51 704.317 366.514 687.428 394.652C679.792 407.373 671.895 419.903 664.675 432.864C661.131 439.227 657.18 445.187 655.033 452.162C653.929 454.575 656.514 458.224 659.268 457.8C674.812 455.41 687.121 432.613 696.823 421.405C700.468 417.194 701.677 413.83 705.233 410.538C706.968 410.355 706.206 410.15 707.608 411.127L707.611 411.996C702.42 422.04 682.832 445.813 674.064 454.063C669.793 457.78 663.067 461.783 657.286 460.892C644.045 458.853 645.288 444.512 646.996 434.58C636.707 448.125 611.491 481.209 599.158 445.237C597.433 440.207 597.681 432.397 598.656 427.13C592.833 435.209 586.307 442.135 580.003 449.606C560.399 472.838 540.478 458.021 551.23 431.122C543.778 441.545 524.923 457.98 511.951 460.41C494.552 463.669 483.738 457.068 479.915 439.346C472.522 452.244 455.834 469.424 439.868 461.594C423.126 453.384 427.862 433.405 432.17 419.026C435.802 406.803 446.362 392.659 442.561 379.546C439.775 369.938 427.23 375.334 420.577 371.78C420.541 370.86 420.509 369.941 420.483 369.021C423.967 367.6 432.909 369.582 437.106 369.453C454.189 368.883 468.518 360.299 473.515 343.353C477.438 330.048 477.313 320.494 471.124 308.095C469.702 305.878 468.343 304.354 466.651 302.369C450.419 312.466 427.116 350.834 420.483 369.021C420.144 369.653 419.802 370.282 419.456 370.91C406.07 399.18 394.914 422.406 368.758 442.068C348.284 457.457 320.95 467.568 295.221 459.428C291.072 458.116 287.257 452.732 286.019 448.975C278.861 434.325 295.959 415.886 303.846 433.801C306.734 440.36 298.918 452.753 288.245 443.729C289.477 449.145 290.282 452.526 295.553 455.82C303.376 460.365 316.744 459.657 325.013 457.244C355.827 448.253 374.307 414.225 390.001 388.417C410.975 353.927 428.826 323.422 463.504 300.567C442.503 289.474 405.899 292.908 384.228 299.412C360.659 306.486 330.059 323.773 319.338 346.522C291.915 404.717 356.628 405.381 381.017 367.444C383.139 364.143 387.565 355.289 391.522 355.659C392.256 356.846 392.542 357.972 392.033 359.375C383.124 383.949 354.121 403.029 327.955 395.528C309.061 389.933 305.115 373.472 310.052 356.524C316.528 334.295 336.175 317.102 356.172 306.778C388.462 290.108 434.195 282.322 467.967 298.267ZM615.55 458.7C633.17 454.901 663.781 407.202 668.027 388.285C669.111 383.459 665.462 381.685 660.858 382.045C644.999 388.239 601.281 436.96 608.545 454.073C609.276 455.827 610.675 457.218 612.434 457.937C613.334 458.297 614.584 458.522 615.55 458.7ZM504.563 420.49L505.529 420.217C507.12 419.798 508.602 419.159 510.101 418.486C523.263 411.851 536.248 407.315 545.063 394.288C548.042 389.886 552.921 383.386 545.026 381.552C529.458 385.33 513.36 407.537 504.563 420.49Z"/><path class="logo-primary" d="M286.839 511.213C291.358 510.951 306.952 510.421 309.46 514.346L309.077 515.297C307.582 515.852 303.643 515.123 301.898 514.753C266.123 507.162 204.346 556.986 259.257 582.397C281.254 548.827 338.618 513.552 379.449 514.005C386.237 514.08 394.542 516.956 399.035 522.21C411.084 536.301 396.909 554.604 385.189 563.377C355.141 585.097 314.394 593.904 277.821 589.405C265.862 609.182 238.813 665.7 272.536 676.947C273.615 667.042 274.435 660.707 277.466 651.292C287.973 622.12 313.126 599.351 345.475 598.116C355.419 597.737 363.456 603.47 364.449 613.716C366.244 632.249 357.756 646.826 344.215 658.882C326.311 675.074 302.658 683.406 278.558 682.008C279.992 691.357 282.011 698.893 287.351 706.969C291.837 713.755 299.452 720.053 307.583 721.64C309.509 722.016 309.471 721.935 311.391 722.628L311.732 723.427L311.165 724.214C300.41 725.288 290.281 716.378 284.156 708.413C277.639 699.939 274.941 691.175 273.141 680.837C240.744 668.964 236.257 635.018 247.116 606.011C250.113 598.008 253.522 592.028 257.741 584.691C234.101 575.938 225.203 550.46 241.574 530.025C252.48 516.411 270.253 512.778 286.839 511.213ZM279.842 587.072C290.619 587.925 299.093 587.665 309.878 586.691C339.464 583.632 373.449 570.257 393.033 546.889C396.573 542.665 398.64 538.442 399.804 533.026C395.935 518.612 382.625 515.554 369.403 517.684C338.631 521.095 311.754 545.529 293.057 568.914C288.359 574.748 283.949 580.808 279.842 587.072ZM278.487 678.962C283.816 679.052 287.349 679.115 292.61 678.474C318.06 674.504 348.351 652.499 359.309 628.574C364.332 617.606 362.977 602.468 347.382 602.663C312.39 607.28 277.677 643.089 278.487 678.962Z"/><path class="logo-primary" d="M603.263 341.613C604.75 341.682 605.901 341.695 607.3 342.311C609.687 343.348 611.549 345.313 612.454 347.752C615.177 355.129 609.077 361.517 602.434 363.803C597.114 363.096 593.491 361.281 592.3 355.511C591.678 352.563 592.286 349.49 593.983 347.001C596.606 343.16 599.105 342.325 603.263 341.613Z"/><path class="logo-secondary" fill-opacity="0.019607844" d="M443.926 374.363C443.51 374.058 442.04 373.151 441.849 372.771C442.103 372.324 442.867 372.42 443.3 372.398L443.926 374.363Z"/><path class="logo-secondary" fill-opacity="0.13333334" d="M420.483 369.021C420.509 369.941 420.541 370.86 420.577 371.78L419.456 370.91C419.802 370.282 420.144 369.653 420.483 369.021Z"/>
+`;
+
+function pickPalette() {
+  const today = new Date();
+  const m = today.getMonth() + 1;
+  const d = today.getDate();
+  const dow = today.getDay();
+
+  // ── SUMMER WINDOW (June 1 – Aug 15) ───────────────────────
+  // Warm patriotic/country/coastal summer palette — no Christmas greens
+  if ((m === 6) || (m === 7) || (m === 8 && d <= 15)) {
+    // 4th of July week gets full stars & stripes
+    if (m === 7 && d >= 1 && d <= 7) {
+      const fourth = [
+        { primary: "#B22234", secondary: "#f7f1e1", name: "Old Glory Red" },
+        { primary: "#3C3B6E", secondary: "#f7f1e1", name: "Old Glory Blue" },
+        { primary: "#B22234", secondary: "#3C3B6E", name: "Stars & Stripes" }
+      ];
+      return fourth[Math.floor(Math.random() * fourth.length)];
+    }
+    // Rest of summer — country, coastal, patriotic warmth
+    const summer = [
+      { primary: "#B22234", secondary: "#f7f1e1", name: "Barn Red" },
+      { primary: "#3C3B6E", secondary: "#f0f4fa", name: "Denim Blue" },
+      { primary: "#C8860A", secondary: "#fff8e1", name: "Corn Gold" },
+      { primary: "#2C7DA0", secondary: "#f0f7fa", name: "Coastal Sky" },
+      { primary: "#8B4513", secondary: "#fdf0e0", name: "Saddle Brown" },
+      { primary: "#B55A2A", secondary: "#fff0e4", name: "Sunbaked Clay" },
+      { primary: "#7B2D26", secondary: "#fdf0e6", name: "Cowgirl Red" },
+      { primary: "#1A5F7A", secondary: "#eef6fa", name: "River Blue" },
+      { primary: "#9B3A4A", secondary: "#fdeef2", name: "Wildflower Rose" },
+      { primary: "#C25B3F", secondary: "#fff3ef", name: "Sunset Coral" }
+    ];
+    return summer[Math.floor(Math.random() * summer.length)];
+  }
+
+  // ── MEMORIAL DAY window (late May) ────────────────────────
+  if (m === 5 && d >= 22) {
+    // Last Monday of May = Memorial Day proper
+    if (dow === 1) {
+      const next = new Date(today); next.setDate(d + 7);
+      if (next.getMonth() + 1 !== 5) {
+        return { primary: "#B22234", secondary: "#f7f1e1", name: "Memorial Day" };
+      }
+    }
+    const memorial = [
+      { primary: "#B22234", secondary: "#f7f1e1", name: "Liberty Red" },
+      { primary: "#3C3B6E", secondary: "#f7f1e1", name: "Old Glory Blue" },
+      { primary: "#B22234", secondary: "#3C3B6E", name: "Stars & Stripes" }
+    ];
+    return memorial[Math.floor(Math.random() * memorial.length)];
+  }
+
+  // ── CHRISTMAS (Dec 1–26) ───────────────────────────────────
+  if (m === 12 && d >= 1 && d <= 26) {
+    const xmas = [
+      { primary: "#C8102E", secondary: "#f7f1e1", name: "Christmas Red" },
+      { primary: "#1B5E20", secondary: "#f7f1e1", name: "Evergreen" },
+      { primary: "#C8102E", secondary: "#1B5E20", name: "Holly & Ivy" }
+    ];
+    return xmas[Math.floor(Math.random() * xmas.length)];
+  }
+
+  // ── VALENTINE'S ───────────────────────────────────────────
+  if (m === 2 && d >= 10 && d <= 14) {
+    return { primary: "#D81B60", secondary: "#fce4ec", name: "Sweetheart" };
+  }
+
+  // ── ST. PATRICK'S ─────────────────────────────────────────
+  if (m === 3 && d >= 15 && d <= 17) {
+    return { primary: "#00873E", secondary: "#f7f1e1", name: "Shamrock" };
+  }
+
+  // ── EASTER ────────────────────────────────────────────────
+  if ((m === 3 && d >= 25) || (m === 4 && d <= 15)) {
+    const easter = [
+      { primary: "#B388EB", secondary: "#fff8e7", name: "Easter Lavender" },
+      { primary: "#F4A7B9", secondary: "#fff8e7", name: "Easter Rose" },
+      { primary: "#A8DADC", secondary: "#fff8e7", name: "Easter Sky" }
+    ];
+    return easter[Math.floor(Math.random() * easter.length)];
+  }
+
+  // ── HALLOWEEN ─────────────────────────────────────────────
+  if (m === 10 && d >= 25) {
+    return { primary: "#E67E22", secondary: "#f7f1e1", name: "Harvest Orange" };
+  }
+
+  // ── THANKSGIVING ──────────────────────────────────────────
+  if (m === 11 && d >= 20 && d <= 28) {
+    const tgiving = [
+      { primary: "#B7410E", secondary: "#fdf4e3", name: "Harvest Rust" },
+      { primary: "#8B4513", secondary: "#fdf4e3", name: "Autumn Oak" },
+      { primary: "#A0522D", secondary: "#fdf4e3", name: "Cinnamon" }
+    ];
+    return tgiving[Math.floor(Math.random() * tgiving.length)];
+  }
+
+  // ── DEFAULT WHEEL (all other dates) ───────────────────────
+  // Country · coastal · Christian · candle brand
+  // No dark Christmas greens in this list
+  const wheel = [
+    { primary: "#B22234", secondary: "#f7f1e1", name: "Barn Red" },
+    { primary: "#2C7DA0", secondary: "#f0f7fa", name: "Coastal Blue" },
+    { primary: "#C8860A", secondary: "#fff8e1", name: "Honey Gold" },
+    { primary: "#8B2C5C", secondary: "#fbefe7", name: "Magnolia Wine" },
+    { primary: "#0F4C75", secondary: "#f5f0e1", name: "St. Johns Blue" },
+    { primary: "#D17A22", secondary: "#fff6e6", name: "Florida Sunset" },
+    { primary: "#5D4037", secondary: "#f5e6d3", name: "Cedar Bark" },
+    { primary: "#8E4585", secondary: "#faf0f8", name: "Wisteria" },
+    { primary: "#BC4749", secondary: "#fff8e7", name: "Brick Hearth" },
+    { primary: "#264653", secondary: "#f4f1de", name: "Cypress Shadow" },
+    { primary: "#E76F51", secondary: "#faf3dd", name: "Terra Cotta" },
+    { primary: "#9D4EDD", secondary: "#faf0ff", name: "Iris" },
+    { primary: "#CA6702", secondary: "#fefae0", name: "Honey Amber" },
+    { primary: "#7B2D26", secondary: "#fbe9d0", name: "Cowgirl Red" },
+    { primary: "#A4243B", secondary: "#fff8e7", name: "Rose Hip" },
+    { primary: "#5B8A72", secondary: "#f4efe1", name: "Driftwood Sage" },
+    { primary: "#3C3B6E", secondary: "#f0f4fa", name: "Denim Blue" },
+    { primary: "#9B3A4A", secondary: "#fdeef2", name: "Wildflower Rose" },
+    { primary: "#1A5F7A", secondary: "#eef6fa", name: "River Blue" },
+    { primary: "#8B4513", secondary: "#fdf0e0", name: "Saddle Brown" }
+  ];
+  return wheel[Math.floor(Math.random() * wheel.length)];
+}
+
+function applyPalette() {
+  const p = pickPalette();
+  document.documentElement.style.setProperty("--logo-primary", p.primary);
+  document.documentElement.style.setProperty("--logo-secondary", p.secondary);
+  document.documentElement.style.setProperty("--accent", p.primary);
+  const seasonEl = document.getElementById("seasonName");
+  if (seasonEl) seasonEl.textContent = `Today's color: ${p.name}`;
+
+  ["heroLogo", "navLogo", "footerLogo"].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.innerHTML = LOGO_INNER;
+  });
+
+  const css = `
+    .logo-primary { fill: var(--logo-primary); transition: fill 0.6s ease; }
+    .logo-secondary { fill: var(--logo-secondary); }
+  `;
+  let styleTag = document.getElementById("logoStyle");
+  if (!styleTag) {
+    styleTag = document.createElement("style");
+    styleTag.id = "logoStyle";
+    document.head.appendChild(styleTag);
+  }
+  styleTag.textContent = css;
+}
+
+async function initLoveButtons() {
+  const buttons = document.querySelectorAll(".candle-love");
+  let counts = {};
+  try {
+    const r = await window.storage.get("candle-loves", true);
+    if (r && r.value) counts = JSON.parse(r.value);
+  } catch (e) { counts = {}; }
+  let userLoved = new Set();
+  try {
+    const r = await window.storage.get("user-loved", false);
+    if (r && r.value) userLoved = new Set(JSON.parse(r.value));
+  } catch (e) { userLoved = new Set(); }
+
+  buttons.forEach(btn => {
+    const id = btn.dataset.id;
+    const countEl = btn.querySelector(".love-count");
+    const textEl = btn.querySelector(".love-text");
+    countEl.textContent = counts[id] || 0;
+    if (userLoved.has(id)) { btn.classList.add("loved"); textEl.textContent = "Loved"; }
+    btn.addEventListener("click", async (e) => {
+      e.preventDefault();
+      if (userLoved.has(id)) return;
+      userLoved.add(id);
+      counts[id] = (counts[id] || 0) + 1;
+      countEl.textContent = counts[id];
+      btn.classList.add("loved");
+      textEl.textContent = "Loved";
+      try {
+        await window.storage.set("candle-loves", JSON.stringify(counts), true);
+        await window.storage.set("user-loved", JSON.stringify([...userLoved]), false);
+      } catch (err) { console.warn("Storage error:", err); }
+    });
+  });
+}
+
+function initReveal() {
+  const items = document.querySelectorAll(".reveal");
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add("in"), i * 80);
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  items.forEach(el => io.observe(el));
+}
+
+function initNewsletter() {
+  const form = document.getElementById("newsletterForm");
+  const success = document.getElementById("newsletterSuccess");
+  if (form) {
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      success.classList.add("show");
+      form.reset();
+      setTimeout(() => success.classList.remove("show"), 4000);
+    });
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  applyPalette();
+  initLoveButtons();
+  initReveal();
+  initNewsletter();
+  document.getElementById("year").textContent = new Date().getFullYear();
+});
+</script>
+
+</body>
+</html>
