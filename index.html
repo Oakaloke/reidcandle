@@ -1470,25 +1470,23 @@
   }
 
   /* ═══════════════════════════════════════════════════════════
-     MAGIC STAR — JS/Canvas Pixar-quality flyover
+     MAGIC STAR — cinematic top-left arc, fixed canvas
      ═══════════════════════════════════════════════════════════ */
-  .nav-brand-motto { position: relative; overflow: visible; }
-  .motto-magic     { position: relative; display: inline-block; }
-  .star-canvas     { position: absolute; pointer-events: none; }
+  .motto-magic { position: relative; display: inline-block; }
 
-  /* Letter shimmer states */
+  /* Letter shimmer */
   .ml { display: inline; }
   .ml-lit {
     color: #ffffff !important;
     -webkit-text-fill-color: #ffffff !important;
-    text-shadow: 0 0 8px rgba(255,255,255,1), 0 0 20px rgba(255,255,255,0.85), 0 0 36px rgba(210,225,255,0.6);
-    transition: color 0.1s ease, text-shadow 0.1s ease, -webkit-text-fill-color 0.1s ease;
+    text-shadow: 0 0 6px #fff, 0 0 18px rgba(255,255,255,0.9), 0 0 38px rgba(220,235,255,0.7);
+    transition: color 0.08s ease, text-shadow 0.08s ease, -webkit-text-fill-color 0.08s ease;
   }
   .ml-fading {
     color: var(--accent) !important;
     -webkit-text-fill-color: var(--accent) !important;
-    text-shadow: 0 0 5px rgba(255,255,255,0.2);
-    transition: color 0.65s ease, text-shadow 0.65s ease, -webkit-text-fill-color 0.65s ease;
+    text-shadow: 0 0 4px rgba(255,255,255,0.12);
+    transition: color 0.85s ease, text-shadow 0.85s ease, -webkit-text-fill-color 0.85s ease;
   }
 
   /* ═══════════════════════════════════════════════════════════
@@ -2423,235 +2421,284 @@ document.addEventListener("DOMContentLoaded", () => {
 (function () {
   'use strict';
 
-  /* ── Helpers ──────────────────────────────────────────── */
+  /* ─────────────────────────────────────────────────────────
+     Setup: split letters, build fixed canvas
+  ───────────────────────────────────────────────────────── */
+  var motto = document.querySelector('.motto-magic');
+  if (!motto) return;
+
+  /* Split text into individual letter spans */
+  if (!motto.querySelector('.ml')) {
+    var raw = motto.textContent.trim();
+    motto.innerHTML = raw.split('').map(function (ch) {
+      return '<span class="ml">' + (ch === ' ' ? ' ' : ch) + '</span>';
+    }).join('');
+  }
+  var spans = Array.from(motto.querySelectorAll('.ml'));
+
+  /* Fixed canvas — covers full viewport width, top portion of page.
+     This lets the star enter from anywhere in the upper region,
+     not just from within the tiny nav-brand box. */
+  var cv = document.getElementById('magicStarCanvas');
+  if (cv) cv.remove();
+  cv = document.createElement('canvas');
+  cv.id = 'magicStarCanvas';
+  cv.style.cssText = 'position:fixed;top:0;left:0;pointer-events:none;z-index:9999;';
+  document.body.appendChild(cv);
+  var cx = cv.getContext('2d');
+
+  /* ─────────────────────────────────────────────────────────
+     Measurements (re-run on resize)
+  ───────────────────────────────────────────────────────── */
+  var VW, mottoR, letterPageCx;
+
+  function measure() {
+    VW     = window.innerWidth;
+    mottoR = motto.getBoundingClientRect();
+    cv.width  = VW;
+    cv.height = Math.max(280, mottoR.bottom + 60);
+    cv.style.width  = VW + 'px';
+    cv.style.height = cv.height + 'px';
+    letterPageCx = spans.map(function (el) {
+      var r = el.getBoundingClientRect();
+      return r.left + r.width * 0.5;
+    });
+  }
+
+  /* ─────────────────────────────────────────────────────────
+     Animation path:
+       Entry  — top-left of viewport, above text
+       Arc    — sweeps down-right toward text
+       Hover  — over center of "Brighten Every Heart"
+       Exit   — continues right and fades
+  ───────────────────────────────────────────────────────── */
   function cubicB(t, p0, p1, p2, p3) {
     var u = 1 - t;
     return u*u*u*p0 + 3*u*u*t*p1 + 3*u*t*t*p2 + t*t*t*p3;
   }
-  function easeIO(t) { return t < 0.5 ? 2*t*t : 1-Math.pow(-2*t+2,2)/2; }
 
-  /* Slows the path in the middle 30% for a "hover" feel */
-  function flightT(t) {
-    if (t < 0.35)  return easeIO(t / 0.35)       * 0.42;
-    if (t < 0.62)  return 0.42 + (t-0.35)/(0.27) * 0.10;
-    return 0.52   + easeIO((t-0.62)/0.38)          * 0.48;
+  /* Custom ease: fast entry → slow hover → fast exit */
+  function flightEase(t) {
+    var eio = function (x) { return x < 0.5 ? 2*x*x : 1 - Math.pow(-2*x+2, 2)*0.5; };
+    if (t < 0.34) return eio(t / 0.34) * 0.43;
+    if (t < 0.66) return 0.43 + (t - 0.34) / 0.32 * 0.14; /* slow hover band */
+    return 0.57 + eio((t - 0.66) / 0.34) * 0.43;
   }
 
-  /* ── Setup ────────────────────────────────────────────── */
-  var motto = document.querySelector('.motto-magic');
-  if (!motto) return;
-
-  /* Split into letter spans */
-  var raw = motto.textContent.trim();
-  motto.innerHTML = raw.split('').map(function(ch) {
-    return '<span class="ml">' + (ch === ' ' ? '&nbsp;' : ch) + '</span>';
-  }).join('');
-
-  /* Canvas overlaid on the nav-brand-motto container */
-  var canvas = document.createElement('canvas');
-  canvas.className = 'star-canvas';
-  var parent = motto.closest('.nav-brand-motto');
-  parent.appendChild(canvas);
-  var ctx = canvas.getContext('2d');
-
-  var PAD = 70;
-  var mottoL = 0, mottoTop = 0, mottoW = 0, mottoH = 0;
-  var letterCx = [];   /* page-x center of each letter span */
-  var canvasLeft = 0;  /* canvas left in page coords, cached per frame */
-
-  function measure() {
-    var pr = parent.getBoundingClientRect();
-    var mr = motto.getBoundingClientRect();
-    mottoL   = mr.left;
-    mottoTop = mr.top;
-    mottoW   = mr.width;
-    mottoH   = mr.height;
-    canvas.style.left = (mr.left - pr.left - PAD) + 'px';
-    canvas.style.top  = (mr.top  - pr.top  - PAD * 0.6) + 'px';
-    canvas.width  = mottoW + PAD * 2;
-    canvas.height = mottoH + PAD * 1.2;
-    letterCx = Array.from(motto.querySelectorAll('.ml')).map(function(el) {
-      var r = el.getBoundingClientRect();
-      return r.left + r.width / 2;
-    });
+  function getStarPos(t) {
+    var mr  = mottoR;
+    var tcy = mr.top  + mr.height * 0.5;
+    var tcx = mr.left + mr.width  * 0.5;
+    var ft  = flightEase(t);
+    /* Bezier control points (all in viewport px) */
+    var x = cubicB(ft,
+      VW * 0.03,           /* P0: top-left entry */
+      mr.left * 0.35,      /* P1: descend toward text */
+      tcx * 0.72,          /* P2: approaching centre */
+      VW + 24              /* P3: exit off-right */
+    );
+    var y = cubicB(ft,
+      8,                   /* P0: near top of viewport */
+      mr.top  * 0.40,      /* P1: dropping down */
+      tcy + mr.height * 0.08, /* P2: at text level */
+      tcy - mr.height * 0.15  /* P3: rise slightly on exit */
+    );
+    return { x: x, y: y };
   }
 
-  /* Defer measure one frame so layout is settled */
-  requestAnimationFrame(function() {
-    measure();
-    window.addEventListener('resize', measure);
-    requestAnimationFrame(tick);
-  });
-
-  /* ── Star path position ───────────────────────────────── */
-  function getPos(t) {
-    var ft = flightT(t);
-    var W  = canvas.width, H = canvas.height, mid = H * 0.54;
-    return {
-      x: cubicB(ft, -8, W*0.22, W*0.78, W+8),
-      y: cubicB(ft, mid+6, mid - H*0.30, mid - H*0.22, mid+5)
-    };
-  }
-
-  /* ── Star drawing ─────────────────────────────────────── */
-  function starPath(cx, cy, r) {
-    ctx.beginPath();
+  /* ─────────────────────────────────────────────────────────
+     Star renderer
+  ───────────────────────────────────────────────────────── */
+  function makeStarPath(x, y, r) {
+    cx.beginPath();
     for (var i = 0; i < 5; i++) {
-      var oa = i * 4*Math.PI/5 - Math.PI/2;
-      var ia = oa + Math.PI/5;
+      var oa = i * 4 * Math.PI / 5 - Math.PI / 2;
+      var ia = oa + Math.PI / 5;
       var fn = i === 0 ? 'moveTo' : 'lineTo';
-      ctx[fn](cx + Math.cos(oa)*r,     cy + Math.sin(oa)*r);
-      ctx.lineTo(cx + Math.cos(ia)*r*0.38, cy + Math.sin(ia)*r*0.38);
+      cx[fn](x + Math.cos(oa)*r,        y + Math.sin(oa)*r);
+      cx.lineTo(x + Math.cos(ia)*r*0.38, y + Math.sin(ia)*r*0.38);
     }
-    ctx.closePath();
+    cx.closePath();
   }
 
-  function drawStar(x, y, size, alpha) {
-    ctx.save();
-    ctx.globalAlpha = alpha;
+  function drawStar(x, y, sz, alpha) {
+    cx.save();
+    cx.globalAlpha = alpha;
 
-    /* Soft radial halo */
-    var halo = ctx.createRadialGradient(x, y, 0, x, y, size*5);
-    halo.addColorStop(0,   'rgba(255,255,255,0.28)');
-    halo.addColorStop(0.5, 'rgba(230,240,255,0.08)');
-    halo.addColorStop(1,   'transparent');
-    ctx.fillStyle = halo;
-    ctx.beginPath();
-    ctx.arc(x, y, size*5, 0, Math.PI*2);
-    ctx.fill();
+    /* Ambient halo */
+    var halo = cx.createRadialGradient(x, y, 0, x, y, sz * 7);
+    halo.addColorStop(0,    'rgba(255,255,255,0.26)');
+    halo.addColorStop(0.45, 'rgba(220,235,255,0.07)');
+    halo.addColorStop(1,    'transparent');
+    cx.fillStyle = halo;
+    cx.beginPath(); cx.arc(x, y, sz*7, 0, Math.PI*2); cx.fill();
 
-    /* Glow layers (blurred star shapes, large→small) */
+    /* Multi-layer glow star shapes (outer → inner) */
     var layers = [
-      [size*2.0, 0.12, 32],
-      [size*1.5, 0.22, 20],
-      [size*1.15, 0.45, 10],
-      [size,      1.0,   0]
+      [sz*2.4, 0.07, 44],
+      [sz*1.75,0.15, 28],
+      [sz*1.3, 0.32, 14],
+      [sz*1.0, 0.7,   6],
+      [sz*0.6, 1.0,   0]
     ];
-    for (var li = 0; li < layers.length; li++) {
-      var L = layers[li];
-      ctx.shadowBlur  = L[2];
-      ctx.shadowColor = 'rgba(255,255,255,0.95)';
-      ctx.fillStyle   = 'rgba(255,255,255,' + L[1] + ')';
-      starPath(x, y, L[0]);
-      ctx.fill();
-    }
+    layers.forEach(function (L) {
+      cx.shadowBlur  = L[2];
+      cx.shadowColor = 'rgba(255,255,255,0.98)';
+      cx.fillStyle   = 'rgba(255,255,255,' + L[1] + ')';
+      makeStarPath(x, y, L[0]);
+      cx.fill();
+    });
 
-    /* Cross-light rays */
-    ctx.shadowBlur = 4;
-    ctx.shadowColor = 'rgba(255,255,255,0.9)';
-    var rays = [[1.0, size*3.5], [0.7, size*2.2], [1.0, size*3.5], [0.7, size*2.2]];
-    for (var ri = 0; ri < 4; ri++) {
-      var ang = ri * Math.PI/4;
-      var rlen = rays[ri][1];
-      var grd = ctx.createLinearGradient(
-        x - Math.cos(ang)*2, y - Math.sin(ang)*2,
-        x + Math.cos(ang)*rlen, y + Math.sin(ang)*rlen
-      );
-      grd.addColorStop(0, 'rgba(255,255,255,' + (rays[ri][0]*0.85) + ')');
+    /* Lens-flare cross rays — 4 long + 4 short */
+    var rayDefs = [
+      [sz*5.0, 1.5, 0.9],  /* long  */
+      [sz*3.0, 0.9, 0.55], /* short */
+      [sz*5.0, 1.5, 0.9],
+      [sz*3.0, 0.9, 0.55],
+      [sz*4.0, 1.2, 0.7],
+      [sz*2.5, 0.8, 0.45],
+      [sz*4.0, 1.2, 0.7],
+      [sz*2.5, 0.8, 0.45]
+    ];
+    rayDefs.forEach(function (rd, ri) {
+      var ang = ri * Math.PI / 4;
+      var len = rd[0], lw = rd[1], opacity = rd[2];
+      var grd = cx.createLinearGradient(x, y, x+Math.cos(ang)*len, y+Math.sin(ang)*len);
+      grd.addColorStop(0, 'rgba(255,255,255,' + opacity + ')');
       grd.addColorStop(1, 'transparent');
-      ctx.strokeStyle = grd;
-      ctx.lineWidth = 1.2;
-      ctx.beginPath();
-      ctx.moveTo(x - Math.cos(ang)*2, y - Math.sin(ang)*2);
-      ctx.lineTo(x + Math.cos(ang)*rlen, y + Math.sin(ang)*rlen);
-      ctx.stroke();
-      ctx.beginPath();
-      ctx.moveTo(x + Math.cos(ang)*2, y + Math.sin(ang)*2);
-      ctx.lineTo(x - Math.cos(ang)*rlen, y - Math.sin(ang)*rlen);
-      ctx.stroke();
-    }
-    ctx.restore();
+      cx.save();
+      cx.shadowBlur = 4; cx.shadowColor = '#fff';
+      cx.strokeStyle = grd; cx.lineWidth = lw;
+      cx.beginPath();
+      cx.moveTo(x - Math.cos(ang)*sz*0.3, y - Math.sin(ang)*sz*0.3);
+      cx.lineTo(x + Math.cos(ang)*len,    y + Math.sin(ang)*len);
+      cx.stroke();
+      /* Mirror ray */
+      var grd2 = cx.createLinearGradient(x, y, x-Math.cos(ang)*len, y-Math.sin(ang)*len);
+      grd2.addColorStop(0, 'rgba(255,255,255,' + opacity + ')');
+      grd2.addColorStop(1, 'transparent');
+      cx.strokeStyle = grd2;
+      cx.beginPath();
+      cx.moveTo(x + Math.cos(ang)*sz*0.3, y + Math.sin(ang)*sz*0.3);
+      cx.lineTo(x - Math.cos(ang)*len,    y - Math.sin(ang)*len);
+      cx.stroke();
+      cx.restore();
+    });
+
+    cx.restore();
   }
 
-  /* ── Particles ────────────────────────────────────────── */
+  /* ─────────────────────────────────────────────────────────
+     Particle trail
+  ───────────────────────────────────────────────────────── */
   var parts = [];
-  function spawnPart(x, y, isHover) {
-    var speed = isHover ? 0.6 : 1.4;
-    parts.push({
-      x: x, y: y,
-      vx: (Math.random()-0.5) * speed,
-      vy: (Math.random()-0.5) * speed - 0.3,
-      life: 1.0,
-      r: Math.random() * (isHover ? 2 : 2.8) + 1
-    });
+
+  function spawnParticle(x, y, hover) {
+    var spd = hover ? 0.55 : 1.9;
+    var n   = hover ? 1 : 2;
+    for (var i = 0; i < n; i++) {
+      parts.push({
+        x: x, y: y,
+        vx: (Math.random() - 0.5) * spd * 1.6,
+        vy: (Math.random() - 0.5) * spd - 0.45,
+        life: 1.0,
+        r: Math.random() * (hover ? 1.8 : 2.6) + 1.2
+      });
+    }
   }
-  function tickParts() {
-    parts = parts.filter(function(p) { return p.life > 0; });
-    parts.forEach(function(p) {
-      p.x += p.vx; p.y += p.vy; p.vy += 0.025; p.life -= 0.032;
-    });
-  }
-  function drawParts() {
-    parts.forEach(function(p) {
-      var a = p.life;
-      ctx.save();
-      ctx.globalAlpha = a * 0.8;
-      ctx.shadowBlur  = 7;
-      ctx.shadowColor = 'rgba(255,255,255,0.9)';
-      ctx.fillStyle   = '#ffffff';
-      var rad = Math.max(0.01, p.r * a);
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, rad, 0, Math.PI*2);
-      ctx.fill();
-      ctx.restore();
+
+  function tickParticles() {
+    parts = parts.filter(function (p) { return p.life > 0; });
+    parts.forEach(function (p) {
+      p.x += p.vx; p.y += p.vy;
+      p.vy += 0.04;
+      p.life -= 0.030;
     });
   }
 
-  /* ── Letter shimmer ───────────────────────────────────── */
-  var spans = Array.from(motto.querySelectorAll('.ml'));
-  function setLetters(starPageX, active) {
-    spans.forEach(function(el, i) {
-      var dist = Math.abs(starPageX - letterCx[i]);
-      if (active && dist < 20) {
+  function drawParticles() {
+    parts.forEach(function (p) {
+      cx.save();
+      cx.globalAlpha = Math.max(0, p.life) * 0.82;
+      cx.shadowBlur  = 8;
+      cx.shadowColor = 'rgba(255,255,255,0.92)';
+      cx.fillStyle   = '#ffffff';
+      cx.beginPath();
+      cx.arc(p.x, p.y, Math.max(0.01, p.r * p.life), 0, Math.PI*2);
+      cx.fill();
+      cx.restore();
+    });
+  }
+
+  /* ─────────────────────────────────────────────────────────
+     Letter shimmer
+  ───────────────────────────────────────────────────────── */
+  function updateLetters(starX, active) {
+    spans.forEach(function (el, i) {
+      var dist = Math.abs(starX - letterPageCx[i]);
+      if (active && dist < 22) {
         el.classList.remove('ml-fading');
         el.classList.add('ml-lit');
       } else if (el.classList.contains('ml-lit')) {
         el.classList.remove('ml-lit');
         el.classList.add('ml-fading');
-        (function(e){ setTimeout(function(){ e.classList.remove('ml-fading'); }, 750); })(el);
-      }
-    });
-  }
-  function clearLetters() {
-    spans.forEach(function(el) {
-      if (el.classList.contains('ml-lit') || el.classList.contains('ml-fading')) {
-        el.classList.remove('ml-lit', 'ml-fading');
+        (function (e) {
+          setTimeout(function () { e.classList.remove('ml-fading'); }, 850);
+        }(el));
       }
     });
   }
 
-  /* ── Main tick ────────────────────────────────────────── */
-  var CYCLE  = 7200;
-  var FLIGHT = 2800;
-  var start  = null;
+  function clearLetters() {
+    spans.forEach(function (el) { el.classList.remove('ml-lit', 'ml-fading'); });
+  }
+
+  /* ─────────────────────────────────────────────────────────
+     Main animation loop
+     Cycle: 10s total — 3.4s flight, 6.6s rest
+  ───────────────────────────────────────────────────────── */
+  var CYCLE  = 10000;
+  var FLIGHT = 3400;
+  var t0 = null;
 
   function tick(ts) {
-    if (!start) start = ts;
-    var elapsed = (ts - start) % CYCLE;
+    if (!t0) t0 = ts;
+    var elapsed = (ts - t0) % CYCLE;
 
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    tickParts();
+    cv.width = cv.width; /* fast clear */
+    tickParticles();
 
     if (elapsed < FLIGHT) {
-      var t   = elapsed / FLIGHT;
-      var alpha = t < 0.07 ? t/0.07 : t > 0.87 ? (1-t)/0.13 : 1;
-      var pos = getPos(t);
-      var isHover = t > 0.36 && t < 0.63;
+      var t     = elapsed / FLIGHT;
+      /* Fade in first 6%, fade out last 12% */
+      var alpha = t < 0.06 ? t / 0.06 : t > 0.88 ? (1 - t) / 0.12 : 1;
+      var hover = t > 0.35 && t < 0.65;
+      /* Hover pulse: star grows slightly at peak hover */
+      var hoverWave = hover ? Math.sin((t - 0.35) / 0.30 * Math.PI) : 0;
+      var starSize  = 13 + hoverWave * 4.5;
 
-      if (Math.random() < (isHover ? 0.35 : 0.82)) spawnPart(pos.x, pos.y, isHover);
+      var pos = getStarPos(t);
+      if (Math.random() < (hover ? 0.38 : 0.88)) spawnParticle(pos.x, pos.y, hover);
 
-      drawParts();
-      drawStar(pos.x, pos.y, 9, alpha);
+      drawParticles();
+      drawStar(pos.x, pos.y, starSize, alpha);
+      updateLetters(pos.x, true);
 
-      var cr = canvas.getBoundingClientRect();
-      setLetters(cr.left + pos.x, true);
     } else {
-      drawParts();
-      if (elapsed > FLIGHT + 80) clearLetters();
+      drawParticles();
+      if (elapsed > FLIGHT + 120) clearLetters();
     }
 
     requestAnimationFrame(tick);
   }
+
+  /* Defer one frame so layout is fully settled before measuring */
+  requestAnimationFrame(function () {
+    measure();
+    window.addEventListener('resize', measure);
+    requestAnimationFrame(tick);
+  });
+
 })();
 </script>
 
