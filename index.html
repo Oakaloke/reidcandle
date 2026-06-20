@@ -949,11 +949,13 @@
   .promise-landscape:hover {
     transform: rotate(1deg) translateY(-4px);
   }
-  .promise-landscape img {
+  .promise-landscape img,
+  .promise-landscape svg {
     width: 100%;
     height: calc(100% - 24px);
     object-fit: cover;
     display: block;
+    border-radius: 1px;
   }
   .promise-landscape::after {
     content: "Green Cove Springs";
@@ -1996,7 +1998,98 @@
   <div class="container">
     <div class="promise-header-wrap">
       <div class="promise-landscape reveal">
-        <img src="landscape.jpg" alt="Rolling hills near Green Cove Springs, Florida" loading="lazy">
+        <svg class="promise-postcard-art" viewBox="0 0 600 414" role="img"
+             aria-label="Hand-drawn keepsake of the St. Johns River at golden hour near Green Cove Springs, Florida — sabal palms, a moss-draped live oak and a quiet wooden dock under a warm Florida sky.">
+          <defs>
+            <linearGradient id="pcSky" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#b9d4e0"/>
+              <stop offset=".42" stop-color="#f1dcc1"/>
+              <stop offset=".78" stop-color="#f6c79d"/>
+              <stop offset="1" stop-color="#f2bd91"/>
+            </linearGradient>
+            <linearGradient id="pcWater" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#d2dcd9"/>
+              <stop offset=".5" stop-color="#a7bfc0"/>
+              <stop offset="1" stop-color="#86a3a7"/>
+            </linearGradient>
+            <radialGradient id="pcSun" cx=".5" cy=".5" r=".5">
+              <stop offset="0" stop-color="#fff5e2"/>
+              <stop offset=".55" stop-color="#ffdca6" stop-opacity=".9"/>
+              <stop offset="1" stop-color="#ffdca6" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+
+          <!-- warm Florida sky -->
+          <rect x="0" y="0" width="600" height="252" fill="url(#pcSky)"/>
+          <circle cx="300" cy="224" r="118" fill="url(#pcSun)"/>
+          <circle cx="300" cy="224" r="38" fill="#ffeccb"/>
+          <g fill="none" stroke="#7b6f57" stroke-linecap="round">
+            <path d="M120 78 q10 -9 20 0 q10 -9 20 0" stroke-width="2.6"/>
+            <path d="M158 60 q8 -7 16 0 q8 -7 16 0" stroke-width="2.1"/>
+          </g>
+
+          <!-- calm St. Johns River -->
+          <rect x="0" y="250" width="600" height="164" fill="url(#pcWater)"/>
+          <rect x="289" y="252" width="22" height="150" fill="#ffeccb" opacity=".45"/>
+          <g stroke="#eef3f3" stroke-width="2.2" stroke-linecap="round" opacity=".55">
+            <line x1="56" y1="300" x2="150" y2="300"/>
+            <line x1="430" y1="318" x2="528" y2="318"/>
+            <line x1="180" y1="344" x2="276" y2="344"/>
+            <line x1="356" y1="372" x2="470" y2="372"/>
+          </g>
+
+          <!-- flat far shoreline (no hills — true to NE Florida) -->
+          <rect x="0" y="250" width="600" height="11" fill="#7d9176"/>
+          <g fill="#6e8468">
+            <ellipse cx="70" cy="249" rx="30" ry="10"/>
+            <ellipse cx="200" cy="250" rx="40" ry="9"/>
+            <ellipse cx="408" cy="249" rx="44" ry="10"/>
+            <ellipse cx="548" cy="250" rx="30" ry="9"/>
+          </g>
+
+          <!-- sabal palm — the Florida state tree -->
+          <path d="M99 251 C95 205 103 165 110 120 L121 121 C116 166 110 206 111 251 Z" fill="#5c4a34"/>
+          <g stroke="#3f4a39" stroke-width="5" stroke-linecap="round" fill="none">
+            <path d="M115 118 Q70 99 40 90"/>
+            <path d="M115 118 Q78 86 57 60"/>
+            <path d="M115 118 Q101 80 93 46"/>
+            <path d="M115 118 Q121 76 126 42"/>
+            <path d="M115 118 Q149 82 172 58"/>
+            <path d="M115 118 Q159 94 188 82"/>
+            <path d="M115 118 Q152 112 190 116"/>
+            <path d="M115 118 Q78 112 46 119"/>
+          </g>
+
+          <!-- live oak draped in Spanish moss -->
+          <rect x="500" y="150" width="11" height="101" fill="#5c4a34"/>
+          <g fill="#566b4c">
+            <ellipse cx="505" cy="92" rx="50" ry="34"/>
+            <ellipse cx="455" cy="132" rx="46" ry="33"/>
+            <ellipse cx="556" cy="134" rx="44" ry="31"/>
+            <ellipse cx="503" cy="120" rx="68" ry="44"/>
+          </g>
+          <g stroke="#94a487" stroke-width="2.2" stroke-linecap="round" fill="none" opacity=".9">
+            <path d="M452 150 q-3 18 2 34"/>
+            <path d="M474 158 q3 22 -2 40"/>
+            <path d="M508 162 q-2 26 3 46"/>
+            <path d="M540 156 q4 20 -2 38"/>
+            <path d="M560 150 q-2 16 2 30"/>
+          </g>
+
+          <!-- quiet wooden river dock -->
+          <path d="M256 414 L344 414 L312 271 L288 271 Z" fill="#8a7452"/>
+          <g stroke="#6e5b3d" stroke-width="2.4">
+            <line x1="271" y1="356" x2="329" y2="356"/>
+            <line x1="280" y1="320" x2="320" y2="320"/>
+            <line x1="286" y1="296" x2="314" y2="296"/>
+          </g>
+          <g fill="#6e5b3d">
+            <rect x="251" y="356" width="7" height="36"/>
+            <rect x="342" y="356" width="7" height="36"/>
+            <rect x="279" y="300" width="5" height="22"/>
+            <rect x="316" y="300" width="5" height="22"/>
+          </g>
+        </svg>
       </div>
       <div class="reveal">
         <p class="section-eyebrow">The Reid Candle Difference</p>
